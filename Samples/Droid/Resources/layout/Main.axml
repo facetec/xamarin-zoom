@@ -1,4 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-	<Button android:id="@+id/myButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/hello" />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:gravity="center">
+    <Button
+        android:id="@+id/enrollButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/button_background"
+        android:enabled="false"
+        android:textColor="@drawable/button_text_state"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:text="ENROLL"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/authButton"
+        android:enabled="false"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/button_background"
+        android:textColor="@drawable/button_text_state"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:text="AUTHENTICATE"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/versionText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="test"
+        android:textSize="14sp" />
 </LinearLayout>

@@ -16,6 +16,8 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +45,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\..\packages\Crosslight.Xamarin.Android.Support.v4.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\..\packages\Crosslight.Xamarin.Android.Support.v7.AppCompat.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -62,6 +70,18 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable\gradient.xml" />
+    <AndroidResource Include="Resources\drawable\button_text_state.xml" />
+    <AndroidResource Include="Resources\drawable\button_background.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AndroidBinding\ZoomAndroidBinding.csproj">
+      <Project>{D2A30846-7918-4112-9CB6-AF5769F43A67}</Project>
+      <Name>ZoomAndroidBinding</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <Import Project="..\Sample\Sample.projitems" Label="Shared" Condition="Exists('..\Sample\Sample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

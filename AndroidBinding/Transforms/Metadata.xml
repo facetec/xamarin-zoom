@@ -1,10 +1,125 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<!--
+    <!--
   This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
   
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
+
+    <!--remove-node path="/api/package[@name='com.android.volley']" />
+    <remove-node path="/api/package[@name='com.android.volley.toolbox']" />
+    <remove-node path="/api/package[@name='com.google.gson.internal']" />
+    <remove-node path="/api/package[@name='com.google.gson.internal.bind']" />
+    <remove-node path="/api/package[@name='com.google.gson']" /-->
+
+    <remove-node path="/api/package[@name='com.facetec.zoom.sdk.libs']" />
+    <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[@extends='android.app.Fragment']" />
+    <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[@name='BuildConfig']" />
+
+    <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
+        <class  name="ZoomEnrollmentActivity" abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" static="false" visibility="public">
+        </class>
+    </add-node>
+
+    <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
+        <class name="ZoomAuthenticationActivity" abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" static="false" visibility="public">
+        </class>
+    </add-node>
+
+    <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
+        <class  name="ZoomSDK" abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="true" static="false" visibility="public">
+            <method abstract="false" deprecated="not deprecated" final="false" name="deleteAllEnrollments" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="deleteUser" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+                <parameter name="p1" type="java.lang.String">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="enrolledAuthenticators" native="false" return="com.facetec.zoom.sdk.ZoomEffectiveStrategy" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+                <parameter name="p1" type="java.lang.String">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getAvailableEncryption" native="false" return="com.facetec.zoom.sdk.ZoomSDK.ZoomAvailableEncryption" static="true" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getCameraPermissionStatus" native="false" return="com.facetec.zoom.sdk.ZoomSDK.CameraPermissionStatus" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getFingerprintStatus" native="false" return="com.facetec.zoom.sdk.ZoomSDK.FingerprintStatus" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getStatus" native="false" return="com.facetec.zoom.sdk.ZoomSDK.ZoomSDKStatus" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getUserEnrollmentStatus" native="false" return="com.facetec.zoom.sdk.ZoomSDK.UserEnrollmentStatus" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+                <parameter name="p1" type="java.lang.String">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="initialize" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+                <parameter name="appToken" type="java.lang.String">
+                </parameter>
+                <parameter name="strategy" type="com.facetec.zoom.sdk.ZoomStrategy">
+                </parameter>
+                <parameter name="callback" type="com.facetec.zoom.sdk.ZoomSDK.InitializeCallback">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="isTEEEnabled" native="false" return="com.facetec.zoom.sdk.ZoomSDK.ZoomAvailableEncryption" static="true" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="isUserEnrolled" native="false" return="boolean" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+                <parameter name="p1" type="java.lang.String">
+            </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="preload" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="context" type="android.content.Context">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="setAuditTrailEnabled" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="p0" type="boolean">
+                </parameter>
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="version" native="false" return="java.lang.String" static="true" synchronized="false" visibility="public">
+            </method>
+            <field deprecated="not deprecated" final="true" name="EXTRA_AUTHENTICATION_USER_ID" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;authenticationUserId&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_AUTH_RESULTS" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;zoomsdk.signup.authResult&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_ENROLLMENT_SECRET" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;enrollmentSecretForUserId&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_ENROLLMENT_USER_ID" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;enrollmentUserId&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_ENROLL_RESULTS" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;zoomsdk.signup.enrollResult&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_USER_ENCRYPTION_SECRET" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;applicationPerUserEncryptionSecret&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="REQUEST_CODE_AUTHENTICATION" static="true" transient="false" type="int" type-generic-aware="int" value="1001" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="REQUEST_CODE_ENROLLMENT" static="true" transient="false" type="int" type-generic-aware="int" value="1000" visibility="public" volatile="false">
+            </field>
+        </class>
+
+        <class abstract="true" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ZoomSDK.InitializeCallback" static="true" visibility="public">
+          <constructor deprecated="not deprecated" final="false" name="ZoomSDK.InitializeCallback" static="false" type="com.facetec.zoom.sdk.ZoomSDK.InitializeCallback" visibility="public">
+          </constructor>
+          <method abstract="true" deprecated="not deprecated" final="false" name="onCompletion" native="false" return="void" static="false" synchronized="false" visibility="public">
+            <parameter name="success" type="boolean">
+            </parameter>
+          </method>
+        </class>
+    </add-node>
+    
 </metadata>

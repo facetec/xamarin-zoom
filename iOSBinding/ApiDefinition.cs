@@ -1,66 +1,117 @@
-﻿using System;
-
-using UIKit;
+using System;
+using CoreAnimation;
 using Foundation;
 using ObjCRuntime;
-using CoreGraphics;
+using UIKit;
 
-namespace iOSBinding
+namespace Zoom
 {
-	// The first step to creating a binding is to add your native library ("libNativeLibrary.a")
-	// to the project by right-clicking (or Control-clicking) the folder containing this source
-	// file and clicking "Add files..." and then simply select the native library (or libraries)
-	// that you want to bind.
-	//
-	// When you do that, you'll notice that MonoDevelop generates a code-behind file for each
-	// native library which will contain a [LinkWith] attribute. MonoDevelop auto-detects the
-	// architectures that the native library supports and fills in that information for you,
-	// however, it cannot auto-detect any Frameworks or other system libraries that the
-	// native library may depend on, so you'll need to fill in that information yourself.
-	//
-	// Once you've done that, you're ready to move on to binding the API...
-	//
-	//
-	// Here is where you'd define your API definition for the native Objective-C library.
-	//
-	// For example, to bind the following Objective-C class:
-	//
-	//     @interface Widget : NSObject {
-	//     }
-	//
-	// The C# binding would look like this:
-	//
-	//     [BaseType (typeof (NSObject))]
-	//     interface Widget {
-	//     }
-	//
-	// To bind Objective-C properties, such as:
-	//
-	//     @property (nonatomic, readwrite, assign) CGPoint center;
-	//
-	// You would add a property definition in the C# interface like so:
-	//
-	//     [Export ("center")]
-	//     CGPoint Center { get; set; }
-	//
-	// To bind an Objective-C method, such as:
-	//
-	//     -(void) doSomething:(NSObject *)object atIndex:(NSInteger)index;
-	//
-	// You would add a method definition to the C# interface like so:
-	//
-	//     [Export ("doSomething:atIndex:")]
-	//     void DoSomething (NSObject object, int index);
-	//
-	// Objective-C "constructors" such as:
-	//
-	//     -(id)initWithElmo:(ElmoMuppet *)elmo;
-	//
-	// Can be bound as:
-	//
-	//     [Export ("initWithElmo:")]
-	//     IntPtr Constructor (ElmoMuppet elmo);
-	//
-	// For more information, see http://developer.xamarin.com/guides/ios/advanced_topics/binding_objective-c/
-	//
+	// @interface ZoomAuthenticationResult : NSObject
+	[BaseType(typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface ZoomAuthenticationResult
+	{
+		// @property (readonly, nonatomic) enum ZoomAuthenticationStatus status;
+		[Export("status")]
+		ZoomAuthenticationStatus Status { get; }
+
+		// @property (readonly, nonatomic) enum ZoomAuthenticatorState faceAuthenticatorState;
+		[Export("faceAuthenticatorState")]
+		ZoomAuthenticatorState FaceAuthenticatorState { get; }
+
+		// @property (readonly, nonatomic) NSInteger countOfFaceFailuresSinceLastSuccess;
+		[Export("countOfFaceFailuresSinceLastSuccess")]
+		nint CountOfFaceFailuresSinceLastSuccess { get; }
+
+		// @property (readonly, nonatomic) enum ZoomAuthenticatorState fingerprintAuthenticatorState;
+		[Export("fingerprintAuthenticatorState")]
+		ZoomAuthenticatorState FingerprintAuthenticatorState { get; }
+
+		// @property (readonly, nonatomic) NSInteger countOfFingerprintFailuresSinceLastSuccess;
+		[Export("countOfFingerprintFailuresSinceLastSuccess")]
+		nint CountOfFingerprintFailuresSinceLastSuccess { get; }
+
+		// @property (readonly, nonatomic) enum ZoomAuthenticatorState pinAuthenticatorState;
+		[Export("pinAuthenticatorState")]
+		ZoomAuthenticatorState PinAuthenticatorState { get; }
+
+		// @property (readonly, nonatomic) NSInteger countOfPinFailuresSinceLastSuccess;
+		[Export("countOfPinFailuresSinceLastSuccess")]
+		nint CountOfPinFailuresSinceLastSuccess { get; }
+
+		// @property (readonly, nonatomic) NSInteger consecutiveAuthenticationFailures;
+		[Export("consecutiveAuthenticationFailures")]
+		nint ConsecutiveAuthenticationFailures { get; }
+
+		// @property (readonly, nonatomic) NSInteger consecutiveLockouts;
+		[Export("consecutiveLockouts")]
+		nint ConsecutiveLockouts { get; }
+	}
+
+	// @interface ZoomEnrollmentResult : NSObject
+	[BaseType(typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface ZoomEnrollmentResult
+	{
+		// @property (readonly, nonatomic) enum ZoomEnrollmentStatus status;
+		[Export("status")]
+		ZoomEnrollmentStatus Status { get; }
+
+		// @property (readonly, nonatomic) enum ZoomAuthenticatorState faceEnrollmentState;
+		[Export("faceEnrollmentState")]
+		ZoomAuthenticatorState FaceEnrollmentState { get; }
+
+		// @property (readonly, nonatomic) enum ZoomAuthenticatorState fingerprintEnrollmentState;
+		[Export("fingerprintEnrollmentState")]
+		ZoomAuthenticatorState FingerprintEnrollmentState { get; }
+
+		// @property (readonly, nonatomic) enum ZoomAuthenticatorState pinEnrollmentState;
+		[Export("pinEnrollmentState")]
+		ZoomAuthenticatorState PinEnrollmentState { get; }
+	}
+
+	// typedef void (^EnrollmentCallback)(ZoomEnrollmentResult * _Nonnull);
+	delegate void EnrollmentCallback(ZoomEnrollmentResult result);
+
+	// typedef void (^AuthenticationCallback)(ZoomAuthenticationResult * _Nonnull);
+	delegate void AuthenticationCallback(ZoomAuthenticationResult result);
+
+	// typedef void (^InitializeCallback)(BOOL);
+	delegate void InitializeCallback(bool success);
+
+	// @interface ZoomAuthenticationBridge : NSObject
+	[BaseType(typeof(NSObject), Name="ZoomAuthenticationBridge")]
+	interface Sdk
+	{
+		// +(NSString * _Nonnull)getVersion;
+		[Static]
+		[Export("getVersion")]
+		string Version { get; }
+
+		// +(ZoomSDKStatus)getStatus;
+		[Static]
+		[Export("getStatus")]
+		ZoomSDKStatus Status { get; }
+
+		// +(BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID;
+		[Static]
+		[Export("isUserEnrolledWithUserID:")]
+		bool IsUserEnrolled(string userID);
+
+		// +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
+		[Static]
+		[Export("initializeWithAppToken:enrollmentStrategy:completion:")]
+		void Initialize(string appToken, ZoomStrategy enrollmentStrategy, InitializeCallback completion);
+
+		// +(ZoomEnrollmentViewController * _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
+		[Static]
+		[Export("prepareEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
+		UIViewController PrepareEnrollmentVC(EnrollmentCallback callback, string userID, string applicationPerUserEncryptionSecret);
+
+		// +(ZoomAuthenticationViewController * _Nonnull)prepareAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
+		[Static]
+		[Export("prepareAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
+		UIViewController PrepareAuthenticationVC(AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret);
+
+	}
 }

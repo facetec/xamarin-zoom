@@ -8,6 +8,7 @@ namespace Zoom
 {
 	// @interface ZoomAuthenticationResult : NSObject
 	[BaseType(typeof(NSObject))]
+	[Protocol]
 	[DisableDefaultCtor]
 	interface ZoomAuthenticationResult
 	{
@@ -50,6 +51,7 @@ namespace Zoom
 
 	// @interface ZoomEnrollmentResult : NSObject
 	[BaseType(typeof(NSObject))]
+	[Protocol]
 	[DisableDefaultCtor]
 	interface ZoomEnrollmentResult
 	{

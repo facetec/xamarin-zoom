@@ -27,6 +27,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchSdkVersion>10.3</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -68,18 +69,58 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFastDev>false</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchSdkVersion>10.3</MtouchSdkVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.Swift3">
+      <HintPath>..\..\packages\Xamarin.Swift3.3.0.1\lib\xamarinios10\Xamarin.Swift3.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.AVFoundation">
+      <HintPath>..\..\packages\Xamarin.Swift3.AVFoundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.AVFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Core">
+      <HintPath>..\..\packages\Xamarin.Swift3.Core.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreImage">
+      <HintPath>..\..\packages\Xamarin.Swift3.CoreImage.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreImage.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreGraphics">
+      <HintPath>..\..\packages\Xamarin.Swift3.CoreGraphics.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreMedia">
+      <HintPath>..\..\packages\Xamarin.Swift3.CoreMedia.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreMedia.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Darwin">
+      <HintPath>..\..\packages\Xamarin.Swift3.Darwin.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Darwin.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Dispatch">
+      <HintPath>..\..\packages\Xamarin.Swift3.Dispatch.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Dispatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreAudio">
+      <HintPath>..\..\packages\Xamarin.Swift3.CoreAudio.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Foundation">
+      <HintPath>..\..\packages\Xamarin.Swift3.Foundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.ObjectiveC">
+      <HintPath>..\..\packages\Xamarin.Swift3.ObjectiveC.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.ObjectiveC.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.QuartzCore">
+      <HintPath>..\..\packages\Xamarin.Swift3.QuartzCore.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.QuartzCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.UIKit">
+      <HintPath>..\..\packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -95,6 +136,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -104,6 +146,13 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\iOSBinding\iOSBinding.csproj">
+      <Project>{99B5B3C0-6E42-4834-A9FD-DCF5C27DD821}</Project>
+      <Name>iOSBinding</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\Sample\Sample.projitems" Label="Shared" Condition="Exists('..\Sample\Sample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets" Condition="Exists('..\..\packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets')" />
 </Project>

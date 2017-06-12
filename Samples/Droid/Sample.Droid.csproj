@@ -38,7 +38,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -77,7 +76,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\AndroidBinding\ZoomAndroidBinding.csproj">
       <Project>{D2A30846-7918-4112-9CB6-AF5769F43A67}</Project>
-      <Name>ZoomAndroidBinding</Name>
+      <Name>AndroidBinding</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

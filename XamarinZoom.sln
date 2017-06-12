@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomAndroidBinding", "AndroidBinding\ZoomAndroidBinding.csproj", "{D2A30846-7918-4112-9CB6-AF5769F43A67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidBinding", "AndroidBinding\AndroidBinding.csproj", "{D2A30846-7918-4112-9CB6-AF5769F43A67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOSBinding", "iOSBinding\iOSBinding.csproj", "{99B5B3C0-6E42-4834-A9FD-DCF5C27DD821}"
 EndProject

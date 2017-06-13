@@ -50,6 +50,10 @@
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>..\..\packages\Crosslight.Xamarin.Android.Support.v7.AppCompat.23.1.1\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
+    <Reference Include="Java.Interop" />
+    <Reference Include="ZoomBinding.Android">
+      <HintPath>..\..\packages\Xamarin.Zoom.AndroidLibrary.5.1.1.1\lib\monoandroid71\ZoomBinding.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -60,6 +64,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -74,14 +79,7 @@
     <AndroidResource Include="Resources\drawable\button_background.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AndroidBinding\ZoomAndroidBinding.csproj">
-      <Project>{D2A30846-7918-4112-9CB6-AF5769F43A67}</Project>
-      <Name>AndroidBinding</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
-  <Import Project="..\Sample\Sample.projitems" Label="Shared" Condition="Exists('..\Sample\Sample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

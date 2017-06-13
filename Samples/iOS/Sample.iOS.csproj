@@ -91,11 +91,14 @@
     <Reference Include="Xamarin.Swift3.Core">
       <HintPath>..\..\packages\Xamarin.Swift3.Core.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Swift3.CoreImage">
-      <HintPath>..\..\packages\Xamarin.Swift3.CoreImage.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreImage.dll</HintPath>
+    <Reference Include="Xamarin.Swift3.CoreAudio">
+      <HintPath>..\..\packages\Xamarin.Swift3.CoreAudio.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreAudio.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreGraphics">
       <HintPath>..\..\packages\Xamarin.Swift3.CoreGraphics.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreImage">
+      <HintPath>..\..\packages\Xamarin.Swift3.CoreImage.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreImage.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreMedia">
       <HintPath>..\..\packages\Xamarin.Swift3.CoreMedia.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreMedia.dll</HintPath>
@@ -105,9 +108,6 @@
     </Reference>
     <Reference Include="Xamarin.Swift3.Dispatch">
       <HintPath>..\..\packages\Xamarin.Swift3.Dispatch.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Dispatch.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Swift3.CoreAudio">
-      <HintPath>..\..\packages\Xamarin.Swift3.CoreAudio.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreAudio.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Swift3.Foundation">
       <HintPath>..\..\packages\Xamarin.Swift3.Foundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Foundation.dll</HintPath>
@@ -120,6 +120,9 @@
     </Reference>
     <Reference Include="Xamarin.Swift3.UIKit">
       <HintPath>..\..\packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
+    </Reference>
+    <Reference Include="ZoomBinding.iOS">
+      <HintPath>..\..\packages\Xamarin.Zoom.iOSLibrary.5.1.1.1\lib\xamarinios10\ZoomBinding.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -146,13 +149,6 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\iOSBinding\iOSBinding.csproj">
-      <Project>{99B5B3C0-6E42-4834-A9FD-DCF5C27DD821}</Project>
-      <Name>iOSBinding</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="..\Sample\Sample.projitems" Label="Shared" Condition="Exists('..\Sample\Sample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets" Condition="Exists('..\..\packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets')" />
 </Project>

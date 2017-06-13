@@ -66,6 +66,11 @@ namespace Sample.iOS
 		{
 			EnrollButton.Enabled = success;
 			AuthButton.Enabled = success;
+
+			if (!success)
+			{
+				showAlert("Initialize Failed", Zoom.Sdk.Status.ToString());
+			}
 		}
 
 		public override void DidReceiveMemoryWarning()

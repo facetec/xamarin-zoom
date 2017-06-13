@@ -1,13 +1,11 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidBinding", "AndroidBinding\AndroidBinding.csproj", "{D2A30846-7918-4112-9CB6-AF5769F43A67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomBinding.Android", "AndroidBinding\ZoomBinding.Android.csproj", "{D2A30846-7918-4112-9CB6-AF5769F43A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOSBinding", "iOSBinding\iOSBinding.csproj", "{99B5B3C0-6E42-4834-A9FD-DCF5C27DD821}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomBinding.iOS", "iOSBinding\ZoomBinding.iOS.csproj", "{99B5B3C0-6E42-4834-A9FD-DCF5C27DD821}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E667BD1B-4F7C-4CF9-87C2-1AD432BBA7D4}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Sample", "Samples\Sample\Sample.shproj", "{C076E5F1-897B-46DD-9551-437A2EAC63C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Droid", "Samples\Droid\Sample.Droid.csproj", "{07BF997F-151F-4900-AB6E-49DAEB767D21}"
 EndProject
@@ -73,7 +71,6 @@ Global
 		{C19883B6-5B57-4A9E-852A-6BCEE61813C3}.Debug|iPhone.Build.0 = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C076E5F1-897B-46DD-9551-437A2EAC63C0} = {E667BD1B-4F7C-4CF9-87C2-1AD432BBA7D4}
 		{07BF997F-151F-4900-AB6E-49DAEB767D21} = {E667BD1B-4F7C-4CF9-87C2-1AD432BBA7D4}
 		{C19883B6-5B57-4A9E-852A-6BCEE61813C3} = {E667BD1B-4F7C-4CF9-87C2-1AD432BBA7D4}
 	EndGlobalSection

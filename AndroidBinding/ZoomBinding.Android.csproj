@@ -15,7 +15,7 @@
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Xamarin.Zoom.AndroidLibrary</PackageId>
-    <PackageVersion>5.1.1.1</PackageVersion>
+    <PackageVersion>5.1.2</PackageVersion>
     <Authors>FaceTec, Inc</Authors>
     <Description>A Xamarin library to provide access to FaceTec's ZoOm Android SDK - 3D Face Login + TrueLiveness</Description>
     <Owners>FaceTec, Inc</Owners>

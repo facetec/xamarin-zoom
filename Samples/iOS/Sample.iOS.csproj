@@ -122,7 +122,7 @@
       <HintPath>..\..\packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
     </Reference>
     <Reference Include="ZoomBinding.iOS">
-      <HintPath>..\..\packages\Xamarin.Zoom.iOSLibrary.5.1.1.1\lib\xamarinios10\ZoomBinding.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Zoom.iOSLibrary.5.1.2\lib\xamarinios10\ZoomBinding.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

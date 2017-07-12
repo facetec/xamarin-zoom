@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Java.Interop" />
     <Reference Include="ZoomBinding.Android">
-      <HintPath>..\..\packages\Xamarin.Zoom.AndroidLibrary.5.1.1.1\lib\monoandroid71\ZoomBinding.Android.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Zoom.AndroidLibrary.5.1.2\lib\monoandroid71\ZoomBinding.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

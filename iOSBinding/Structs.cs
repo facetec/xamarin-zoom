@@ -1,11 +1,6 @@
-using System;
-using ObjCRuntime;
-
 namespace Zoom
 {
-
-	[Native]
-	public enum ZoomAuthenticationStatus : ulong
+	public enum ZoomAuthenticationStatus
 	{
 		UserWasAuthenticated = 0,
 		FailedBecauseAppTokenNotValid = 1,
@@ -23,8 +18,7 @@ namespace Zoom
 		FailedBecauseTouchIDSettingsChanged = 13
 	}
 
-	[Native]
-	public enum ZoomAuthenticatorState : ulong
+	public enum ZoomAuthenticatorState
 	{
 		Unused = 0,
 		Cancelled = 1,
@@ -32,8 +26,7 @@ namespace Zoom
 		Completed = 3
 	}
 
-	[Native]
-	public enum ZoomCameraPermissionStatus : ulong
+	public enum ZoomCameraPermissionStatus
 	{
 		NotDetermined = 0,
 		Denied = 1,
@@ -41,8 +34,7 @@ namespace Zoom
 		Authorized = 3
 	}
 
-	[Native]
-	public enum ZoomEffectiveStrategy : ulong
+	public enum ZoomEffectiveStrategy
 	{
 		NotEnrolled = 0,
 		Zoom = 1,
@@ -51,8 +43,7 @@ namespace Zoom
 		ZoomAndFingerAndPin = 4
 	}
 
-	[Native]
-	public enum ZoomEnrollmentStatus : ulong
+	public enum ZoomEnrollmentStatus
 	{
 		UserWasEnrolled = 0,
 		UserNotEnrolled = 1,
@@ -71,8 +62,14 @@ namespace Zoom
 		UserFailedToProvideGoodEnrollment = 14
 	}
 
-	[Native]
-	public enum ZoomFingerprintHardwareCapability : ulong
+	public enum ZoomExternalImageSetVerificationResult
+	{
+		CouldNotDetermineMatch = 0,
+		LowConfidenceMatch = 1,
+		Match = 2
+	}
+
+	public enum ZoomFingerprintHardwareCapability
 	{
 		NeverAvailable = 0,
 		NotCurrentlyAvailable = 1,
@@ -80,15 +77,13 @@ namespace Zoom
 		Available = 3
 	}
 
-	[Native]
-	public enum ZoomLivenessResult : ulong
+	public enum ZoomLivenessResult
 	{
 		LivenessUndetermined = 0,
 		Alive = 1
 	}
 
-	[Native]
-	public enum ZoomSDKStatus : ulong
+	public enum ZoomSDKStatus
 	{
 		NeverInitialized = 0,
 		Initialized = 1,
@@ -98,16 +93,14 @@ namespace Zoom
 		VersionDeprecated = 5
 	}
 
-	[Native]
-	public enum ZoomStrategy : ulong
+	public enum ZoomStrategy
 	{
 		ZoomOnly = 1,
 		TwoFactor = 2,
 		ThreeFactor = 3
 	}
 
-	[Native]
-	public enum ZoomUserEnrollmentStatus : ulong
+	public enum ZoomUserEnrollmentStatus
 	{
 		Enrolled = 0,
 		NotEnrolled = 1,

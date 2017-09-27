@@ -1,0 +1,3 @@
+﻿The automatic .aar binding that Xamarin provides access to most standard types exposed by the ZoomAuthentication library, but there are cases where it was not sufficient.  
+
+All types that we needed to remove, add or alter are defined in Metadata.xml.  To learn more about this process, see https://developer.xamarin.com/guides/android/advanced_topics/binding-a-java-library/customizing-bindings/java-bindings-metadata/

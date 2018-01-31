@@ -38,6 +38,8 @@ ZoomDelegate* cachedDelegate;
 +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)
     enrollmentStrategy completion:(InitializeCallback _Nonnull)completion {
     
+    [[Zoom sdk] preload];
+    
     return [[Zoom sdk] initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy completion:completion];
 }
 

@@ -21,7 +21,9 @@ typedef void(^InitializeCallback)(BOOL success);
 
 +(BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID;
 
-+(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;//
++(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
+
++(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy interfaceCustomization:(ZoomCustomization*_Nullable)customization completion:(InitializeCallback _Nonnull)completion;
 
 +(ZoomEnrollmentViewController* _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull )callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 

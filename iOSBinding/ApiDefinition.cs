@@ -105,6 +105,11 @@ namespace Zoom
 		[Export("initializeWithAppToken:enrollmentStrategy:completion:")]
 		void Initialize(string appToken, ZoomStrategy enrollmentStrategy, InitializeCallback completion);
 
+        // +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
+        [Static]
+        [Export("initializeWithAppToken:enrollmentStrategy:interfaceCustomization:completion:")]
+        void Initialize(string appToken, ZoomStrategy enrollmentStrategy, ZoomCustomization customization, InitializeCallback completion);
+
 		// +(ZoomEnrollmentViewController * _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 		[Static]
 		[Export("prepareEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
@@ -115,5 +120,103 @@ namespace Zoom
 		[Export("prepareAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
 		UIViewController PrepareAuthenticationVC(AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret);
 
+	}
+
+	// @interface ZoomCustomization : NSObject
+	[BaseType (typeof(NSObject), Name="_TtC18ZoomAuthentication17ZoomCustomization")]
+    [Protocol]
+	interface ZoomCustomization
+	{
+		// @property (nonatomic) BOOL showAuthenticationFactorsTabBar;
+		[Export ("showAuthenticationFactorsTabBar")]
+		bool ShowAuthenticationFactorsTabBar { get; set; }
+
+		// @property (nonatomic) BOOL showAuthenticationIntroLogo;
+		[Export ("showAuthenticationIntroLogo")]
+		bool ShowAuthenticationIntroLogo { get; set; }
+
+		// @property (nonatomic) BOOL showEnrollmentIntro;
+		[Export ("showEnrollmentIntro")]
+		bool ShowEnrollmentIntro { get; set; }
+
+		// @property (nonatomic) BOOL showUserLockedScreen;
+		[Export ("showUserLockedScreen")]
+		bool ShowUserLockedScreen { get; set; }
+
+		// @property (copy, nonatomic) NSArray<UIColor *> * _Nonnull mainBackgroundColors;
+		[Export ("mainBackgroundColors", ArgumentSemantic.Copy)]
+		UIColor[] MainBackgroundColors { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull mainForegroundColor;
+		[Export ("mainForegroundColor", ArgumentSemantic.Strong)]
+		UIColor MainForegroundColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull buttonTextNormalColor;
+		[Export ("buttonTextNormalColor", ArgumentSemantic.Strong)]
+		UIColor ButtonTextNormalColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull buttonTextHighlightColor;
+		[Export ("buttonTextHighlightColor", ArgumentSemantic.Strong)]
+		UIColor ButtonTextHighlightColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull buttonBackgroundHighlightColor;
+		[Export ("buttonBackgroundHighlightColor", ArgumentSemantic.Strong)]
+		UIColor ButtonBackgroundHighlightColor { get; set; }
+
+		// @property (copy, nonatomic) NSArray<UIColor *> * _Nonnull resultsScreenBackgroundColor;
+		[Export ("resultsScreenBackgroundColor", ArgumentSemantic.Copy)]
+		UIColor[] ResultsScreenBackgroundColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull resultsScreenForegroundColor;
+		[Export ("resultsScreenForegroundColor", ArgumentSemantic.Strong)]
+		UIColor ResultsScreenForegroundColor { get; set; }
+
+		// @property (nonatomic, strong) CAGradientLayer * _Nonnull progressBarColor;
+		[Export ("progressBarColor", ArgumentSemantic.Strong)]
+		CAGradientLayer ProgressBarColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull progressTextColor;
+		[Export ("progressTextColor", ArgumentSemantic.Strong)]
+		UIColor ProgressTextColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull progressSpinnerColor1;
+		[Export ("progressSpinnerColor1", ArgumentSemantic.Strong)]
+		UIColor ProgressSpinnerColor1 { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull progressSpinnerColor2;
+		[Export ("progressSpinnerColor2", ArgumentSemantic.Strong)]
+		UIColor ProgressSpinnerColor2 { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull tabBackgroundColor;
+		[Export ("tabBackgroundColor", ArgumentSemantic.Strong)]
+		UIColor TabBackgroundColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull tabBackgroundSelectedColor;
+		[Export ("tabBackgroundSelectedColor", ArgumentSemantic.Strong)]
+		UIColor TabBackgroundSelectedColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull tabTextColor;
+		[Export ("tabTextColor", ArgumentSemantic.Strong)]
+		UIColor TabTextColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull tabTextSelectedColor;
+		[Export ("tabTextSelectedColor", ArgumentSemantic.Strong)]
+		UIColor TabTextSelectedColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull tabTextSuccessColor;
+		[Export ("tabTextSuccessColor", ArgumentSemantic.Strong)]
+		UIColor TabTextSuccessColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull tabBackgroundSuccessColor;
+		[Export ("tabBackgroundSuccessColor", ArgumentSemantic.Strong)]
+		UIColor TabBackgroundSuccessColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull fingerprintSuccessColor;
+		[Export ("fingerprintSuccessColor", ArgumentSemantic.Strong)]
+		UIColor FingerprintSuccessColor { get; set; }
+
+		// @property (nonatomic, strong) UIImage * _Nullable brandingLogo;
+		[NullAllowed, Export ("brandingLogo", ArgumentSemantic.Strong)]
+		UIImage BrandingLogo { get; set; }
 	}
 }

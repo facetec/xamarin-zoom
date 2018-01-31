@@ -37,10 +37,14 @@ ZoomDelegate* cachedDelegate;
 
 +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)
     enrollmentStrategy completion:(InitializeCallback _Nonnull)completion {
+    [self initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy interfaceCustomization:NULL completion:completion];
+}
+
++(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy interfaceCustomization:(ZoomCustomization*)customization completion:(InitializeCallback _Nonnull)completion {
     
     [[Zoom sdk] preload];
     
-    return [[Zoom sdk] initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy completion:completion];
+    return [[Zoom sdk] initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy interfaceCustomization:customization completion:completion];
 }
 
 +(ZoomEnrollmentViewController* _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret; {

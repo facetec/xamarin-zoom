@@ -74,6 +74,11 @@ namespace Sample.Droid
 				if (requestCode == ZoomSDK.RequestCodeEnrollment)
 				{
 					ZoomEnrollmentResult result = (ZoomEnrollmentResult)data.GetParcelableExtra(ZoomSDK.ExtraEnrollResults);
+              
+                    if (result.FaceMetrics != null) {
+                        
+                    }
+
 					showAlert(result.Status.ToString());
 				}
 				else

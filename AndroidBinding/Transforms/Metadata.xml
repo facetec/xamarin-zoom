@@ -28,8 +28,12 @@
         </class>
     </add-node>
 
+    <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[@name='ZoomCustomization']"/>
+
     <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
-        <class  name="ZoomSDK" abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="true" static="false" visibility="public">
+
+        <!-- ZoomSDK -->
+        <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="true" name="ZoomSDK" static="false" visibility="public">
             <method abstract="false" deprecated="not deprecated" final="false" name="deleteAllEnrollments" native="false" return="void" static="true" synchronized="false" visibility="public">
                 <parameter name="context" type="android.content.Context">
                 </parameter>
@@ -37,7 +41,7 @@
             <method abstract="false" deprecated="not deprecated" final="false" name="deleteUser" native="false" return="void" static="true" synchronized="false" visibility="public">
                 <parameter name="context" type="android.content.Context">
                 </parameter>
-                <parameter name="p1" type="java.lang.String">
+                <parameter name="userId" type="java.lang.String">
                 </parameter>
             </method>
             <method abstract="false" deprecated="not deprecated" final="false" name="enrolledAuthenticators" native="false" return="com.facetec.zoom.sdk.ZoomEffectiveStrategy" static="true" synchronized="false" visibility="public">
@@ -63,7 +67,7 @@
             <method abstract="false" deprecated="not deprecated" final="false" name="getUserEnrollmentStatus" native="false" return="com.facetec.zoom.sdk.ZoomSDK.UserEnrollmentStatus" static="true" synchronized="false" visibility="public">
                 <parameter name="context" type="android.content.Context">
                 </parameter>
-                <parameter name="p1" type="java.lang.String">
+                <parameter name="userId" type="java.lang.String">
                 </parameter>
             </method>
             <method abstract="false" deprecated="not deprecated" final="false" name="initialize" native="false" return="void" static="true" synchronized="false" visibility="public">
@@ -81,8 +85,8 @@
             <method abstract="false" deprecated="not deprecated" final="false" name="isUserEnrolled" native="false" return="boolean" static="true" synchronized="false" visibility="public">
                 <parameter name="context" type="android.content.Context">
                 </parameter>
-                <parameter name="p1" type="java.lang.String">
-            </parameter>
+                <parameter name="userId" type="java.lang.String">
+                </parameter>
             </method>
             <method abstract="false" deprecated="not deprecated" final="false" name="preload" native="false" return="void" static="true" synchronized="false" visibility="public">
                 <parameter name="context" type="android.content.Context">
@@ -92,6 +96,14 @@
                 <parameter name="p0" type="boolean">
                 </parameter>
             </method>
+            <!--method abstract="false" deprecated="not deprecated" final="false" name="setCustomization" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="p0" type="com.facetec.zoom.sdk.ZoomCustomization">
+                </parameter>
+            </method-->
+            <!--method abstract="false" deprecated="not deprecated" final="false" name="setVerificationImages" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="p0" type="java.util.ArrayList&lt;android.graphics.Bitmap&gt;">
+                </parameter>
+            </method-->
             <method abstract="false" deprecated="not deprecated" final="false" name="version" native="false" return="java.lang.String" static="true" synchronized="false" visibility="public">
             </method>
             <field deprecated="not deprecated" final="true" name="EXTRA_AUTHENTICATION_USER_ID" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;authenticationUserId&quot;" visibility="public" volatile="false">
@@ -104,11 +116,43 @@
             </field>
             <field deprecated="not deprecated" final="true" name="EXTRA_ENROLL_RESULTS" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;zoomsdk.signup.enrollResult&quot;" visibility="public" volatile="false">
             </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_RETRIEVE_ZOOM_BIOMETRIC" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;retrieveZoomBiometric&quot;" visibility="public" volatile="false">
+            </field>
             <field deprecated="not deprecated" final="true" name="EXTRA_USER_ENCRYPTION_SECRET" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;applicationPerUserEncryptionSecret&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="EXTRA_VERIFY_RESULTS" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;zoomsdk.signup.verifyResult&quot;" visibility="public" volatile="false">
             </field>
             <field deprecated="not deprecated" final="true" name="REQUEST_CODE_AUTHENTICATION" static="true" transient="false" type="int" type-generic-aware="int" value="1001" visibility="public" volatile="false">
             </field>
             <field deprecated="not deprecated" final="true" name="REQUEST_CODE_ENROLLMENT" static="true" transient="false" type="int" type-generic-aware="int" value="1000" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="REQUEST_CODE_VERIFICATION" static="true" transient="false" type="int" type-generic-aware="int" value="1002" visibility="public" volatile="false">
+            </field>
+        </class>
+
+        <!-- ZoomFaceBiometrics -->
+        <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="true" name="ZoomFaceBiometricMetrics" static="false" visibility="public">
+            <implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable">
+            </implements>
+            <method abstract="false" deprecated="not deprecated" final="false" name="describeContents" native="false" return="int" static="false" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getAuditTrail" native="false" return="java.util.ArrayList&lt;android.graphics.Bitmap&gt;" static="false" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getExternalImageSetVerificationResult" native="false" return="com.facetec.zoom.sdk.ZoomExternalImageSetVerificationResult" static="false" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getLiveness" native="false" return="com.facetec.zoom.sdk.ZoomLivenessResult" static="false" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getLivenessScore" native="false" return="float" static="false" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="getZoomFacemap" native="false" return="java.lang.String" static="false" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="writeToParcel" native="false" return="void" static="false" synchronized="false" visibility="public">
+                <parameter name="p0" type="android.os.Parcel">
+                </parameter>
+                <parameter name="p1" type="int">
+                </parameter>
+            </method>
+            <field deprecated="not deprecated" final="true" name="CREATOR" static="true" transient="false" type="android.os.Parcelable.Creator" type-generic-aware="android.os.Parcelable.Creator&lt;com.facetec.zoom.sdk.ZoomFaceBiometricMetrics&gt;" visibility="public" volatile="false">
             </field>
         </class>
 

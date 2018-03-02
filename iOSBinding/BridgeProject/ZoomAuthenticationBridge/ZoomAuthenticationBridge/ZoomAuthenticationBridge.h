@@ -19,14 +19,18 @@ typedef void(^InitializeCallback)(BOOL success);
 
 +(ZoomSDKStatus)getStatus;
 
++(void)setAuditTrailEnabled:(BOOL)enabled;
+
 +(BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID;
+
++(void)preload;
 
 +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
 
-+(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy interfaceCustomization:(ZoomCustomization*_Nullable)customization completion:(InitializeCallback _Nonnull)completion;
++(UIViewController* _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull )callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 
-+(ZoomEnrollmentViewController* _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull )callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
++(UIViewController* _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 
-+(ZoomAuthenticationViewController* _Nonnull)prepareAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
++(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization;
 
 @end

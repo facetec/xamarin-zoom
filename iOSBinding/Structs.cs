@@ -1,5 +1,9 @@
+using System;
+using ObjCRuntime;
+
 namespace Zoom
 {
+	
 	public enum ZoomAuthenticationStatus
 	{
 		UserWasAuthenticated = 0,
@@ -15,9 +19,11 @@ namespace Zoom
 		FailedBecauseOfOSContextSwitch = 10,
 		FailedBecauseWifiNotOnInDevMode = 11,
 		FailedBecauseNoConnectionInDevMode = 12,
-		FailedBecauseTouchIDSettingsChanged = 13
+		FailedBecauseTouchIDSettingsChanged = 13,
+		FailedBecauseOfflineSessionsExceeded = 14
 	}
 
+	
 	public enum ZoomAuthenticatorState
 	{
 		Unused = 0,
@@ -26,6 +32,7 @@ namespace Zoom
 		Completed = 3
 	}
 
+	
 	public enum ZoomCameraPermissionStatus
 	{
 		NotDetermined = 0,
@@ -34,6 +41,7 @@ namespace Zoom
 		Authorized = 3
 	}
 
+	
 	public enum ZoomEffectiveStrategy
 	{
 		NotEnrolled = 0,
@@ -43,6 +51,7 @@ namespace Zoom
 		ZoomAndFingerAndPin = 4
 	}
 
+	
 	public enum ZoomEnrollmentStatus
 	{
 		UserWasEnrolled = 0,
@@ -59,9 +68,11 @@ namespace Zoom
 		FailedBecauseOfDiskWriteError = 11,
 		FailedBecauseWifiNotOnInDevMode = 12,
 		FailedBecauseNoConnectionInDevMode = 13,
-		UserFailedToProvideGoodEnrollment = 14
+		UserFailedToProvideGoodEnrollment = 14,
+		FailedBecauseOfflineSessionsExceeded = 15
 	}
 
+	
 	public enum ZoomExternalImageSetVerificationResult
 	{
 		CouldNotDetermineMatch = 0,
@@ -69,6 +80,7 @@ namespace Zoom
 		Match = 2
 	}
 
+	
 	public enum ZoomFingerprintHardwareCapability
 	{
 		NeverAvailable = 0,
@@ -77,12 +89,14 @@ namespace Zoom
 		Available = 3
 	}
 
+	
 	public enum ZoomLivenessResult
 	{
 		LivenessUndetermined = 0,
 		Alive = 1
 	}
 
+	
 	public enum ZoomSDKStatus
 	{
 		NeverInitialized = 0,
@@ -90,9 +104,11 @@ namespace Zoom
 		NetworkIssues = 2,
 		InvalidToken = 3,
 		DeviceInsecure = 4,
-		VersionDeprecated = 5
+		VersionDeprecated = 5,
+		OfflineSessionsExceeded = 6
 	}
 
+	
 	public enum ZoomStrategy
 	{
 		ZoomOnly = 1,
@@ -100,6 +116,7 @@ namespace Zoom
 		ThreeFactor = 3
 	}
 
+	
 	public enum ZoomUserEnrollmentStatus
 	{
 		Enrolled = 0,

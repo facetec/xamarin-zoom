@@ -35,7 +35,7 @@ namespace Sample.iOS
 
 		private void startEnrollment()
 		{
-			var controller = Zoom.Sdk.PrepareEnrollmentVC(onEnrollmentResult, userId, encryptionSecret);
+            var controller = Zoom.Sdk.CreateEnrollmentVC(onEnrollmentResult, userId, encryptionSecret);
 			PresentViewController(controller, false, null);
 
 		}
@@ -43,7 +43,7 @@ namespace Sample.iOS
 		private void startAuthentication()
 		{
 			if (Zoom.Sdk.IsUserEnrolled(userId)) {
-				var controller = Zoom.Sdk.PrepareAuthenticationVC(onAuthenticationResult, userId, encryptionSecret);
+                var controller = Zoom.Sdk.CreateAuthenticationVC(onAuthenticationResult, userId, encryptionSecret);
 				PresentViewController(controller, false, null);
 			}
 			else
@@ -54,6 +54,10 @@ namespace Sample.iOS
 
 		private void onEnrollmentResult(ZoomEnrollmentResult result)
 		{
+            if (result.FaceMetrics != null) {
+                
+            }
+
             showAlert("Enroll Result", result.Description);
 		}
 

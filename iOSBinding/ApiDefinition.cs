@@ -13,40 +13,64 @@ namespace Zoom
 	interface ZoomAuthenticationResult
 	{
 		// @property (readonly, nonatomic) enum ZoomAuthenticationStatus status;
-		[Export("status")]
+		[Export ("status")]
 		ZoomAuthenticationStatus Status { get; }
 
+		// @property (readonly, copy, nonatomic) NSString * _Nullable secret;
+		[NullAllowed, Export ("secret")]
+		string Secret { get; }
+
 		// @property (readonly, nonatomic) enum ZoomAuthenticatorState faceAuthenticatorState;
-		[Export("faceAuthenticatorState")]
+		[Export ("faceAuthenticatorState")]
 		ZoomAuthenticatorState FaceAuthenticatorState { get; }
 
+		// @property (readonly, nonatomic, strong) ZoomFaceBiometricMetrics * _Nullable faceMetrics;
+		[NullAllowed, Export ("faceMetrics", ArgumentSemantic.Strong)]
+		ZoomFaceBiometricMetrics FaceMetrics { get; }
+
 		// @property (readonly, nonatomic) NSInteger countOfFaceFailuresSinceLastSuccess;
-		[Export("countOfFaceFailuresSinceLastSuccess")]
+		[Export ("countOfFaceFailuresSinceLastSuccess")]
 		nint CountOfFaceFailuresSinceLastSuccess { get; }
 
 		// @property (readonly, nonatomic) enum ZoomAuthenticatorState fingerprintAuthenticatorState;
-		[Export("fingerprintAuthenticatorState")]
+		[Export ("fingerprintAuthenticatorState")]
 		ZoomAuthenticatorState FingerprintAuthenticatorState { get; }
 
+		// @property (readonly, nonatomic, strong) ZoomFingerprintMetrics * _Nullable fingerprintMetrics;
+		[NullAllowed, Export ("fingerprintMetrics", ArgumentSemantic.Strong)]
+		ZoomFingerprintMetrics FingerprintMetrics { get; }
+
 		// @property (readonly, nonatomic) NSInteger countOfFingerprintFailuresSinceLastSuccess;
-		[Export("countOfFingerprintFailuresSinceLastSuccess")]
+		[Export ("countOfFingerprintFailuresSinceLastSuccess")]
 		nint CountOfFingerprintFailuresSinceLastSuccess { get; }
 
 		// @property (readonly, nonatomic) enum ZoomAuthenticatorState pinAuthenticatorState;
-		[Export("pinAuthenticatorState")]
+		[Export ("pinAuthenticatorState")]
 		ZoomAuthenticatorState PinAuthenticatorState { get; }
 
+		// @property (readonly, nonatomic, strong) ZoomPinMetrics * _Nullable pinMetrics;
+		[NullAllowed, Export ("pinMetrics", ArgumentSemantic.Strong)]
+		ZoomPinMetrics PinMetrics { get; }
+
 		// @property (readonly, nonatomic) NSInteger countOfPinFailuresSinceLastSuccess;
-		[Export("countOfPinFailuresSinceLastSuccess")]
+		[Export ("countOfPinFailuresSinceLastSuccess")]
 		nint CountOfPinFailuresSinceLastSuccess { get; }
 
 		// @property (readonly, nonatomic) NSInteger consecutiveAuthenticationFailures;
-		[Export("consecutiveAuthenticationFailures")]
+		[Export ("consecutiveAuthenticationFailures")]
 		nint ConsecutiveAuthenticationFailures { get; }
 
 		// @property (readonly, nonatomic) NSInteger consecutiveLockouts;
-		[Export("consecutiveLockouts")]
+		[Export ("consecutiveLockouts")]
 		nint ConsecutiveLockouts { get; }
+
+		// @property (readonly, nonatomic, strong) NSDate * _Nonnull lockoutEndTime;
+		[Export ("lockoutEndTime", ArgumentSemantic.Strong)]
+		NSDate LockoutEndTime { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull description;
+		[Export ("description")]
+		string Description { get; }
 	}
 
 	// @interface ZoomEnrollmentResult : NSObject
@@ -56,20 +80,81 @@ namespace Zoom
 	interface ZoomEnrollmentResult
 	{
 		// @property (readonly, nonatomic) enum ZoomEnrollmentStatus status;
-		[Export("status")]
+		[Export ("status")]
 		ZoomEnrollmentStatus Status { get; }
 
 		// @property (readonly, nonatomic) enum ZoomAuthenticatorState faceEnrollmentState;
-		[Export("faceEnrollmentState")]
+		[Export ("faceEnrollmentState")]
 		ZoomAuthenticatorState FaceEnrollmentState { get; }
 
+		// @property (readonly, nonatomic, strong) ZoomFaceBiometricMetrics * _Nullable faceMetrics;
+		[NullAllowed, Export ("faceMetrics", ArgumentSemantic.Strong)]
+		ZoomFaceBiometricMetrics FaceMetrics { get; }
+
 		// @property (readonly, nonatomic) enum ZoomAuthenticatorState fingerprintEnrollmentState;
-		[Export("fingerprintEnrollmentState")]
+		[Export ("fingerprintEnrollmentState")]
 		ZoomAuthenticatorState FingerprintEnrollmentState { get; }
 
 		// @property (readonly, nonatomic) enum ZoomAuthenticatorState pinEnrollmentState;
-		[Export("pinEnrollmentState")]
+		[Export ("pinEnrollmentState")]
 		ZoomAuthenticatorState PinEnrollmentState { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull description;
+		[Export ("description")]
+		string Description { get; }
+	}
+
+	// @interface ZoomFaceBiometricMetrics : NSObject
+	[BaseType (typeof(NSObject))]
+    [Protocol]
+	[DisableDefaultCtor]
+	interface ZoomFaceBiometricMetrics
+	{
+		// @property (readonly, copy, nonatomic) NSArray<UIImage *> * _Nullable auditTrail;
+		[NullAllowed, Export ("auditTrail", ArgumentSemantic.Copy)]
+		UIImage[] AuditTrail { get; }
+
+		// @property (readonly, nonatomic) enum ZoomLivenessResult livenessResult;
+		[Export ("livenessResult")]
+		ZoomLivenessResult LivenessResult { get; }
+
+		// @property (readonly, nonatomic) float livenessScore;
+		[Export ("livenessScore")]
+		float LivenessScore { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable zoomFacemap;
+		[NullAllowed, Export ("zoomFacemap")]
+		string ZoomFacemap { get; }
+	}
+
+	// @interface ZoomFingerprintMetrics : NSObject
+	[BaseType (typeof(NSObject))]
+    [Protocol]
+	[DisableDefaultCtor]
+	interface ZoomFingerprintMetrics
+	{
+		// @property (readonly, nonatomic) BOOL success;
+		[Export ("success")]
+		bool Success { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable errorString;
+		[NullAllowed, Export ("errorString")]
+		string ErrorString { get; }
+	}
+
+	// @interface ZoomPinMetrics : NSObject
+	[BaseType (typeof(NSObject))]
+    [Protocol]
+	[DisableDefaultCtor]
+	interface ZoomPinMetrics
+	{
+		// @property (readonly, nonatomic) BOOL success;
+		[Export ("success")]
+		bool Success { get; }
+
+		// @property (readonly, nonatomic) NSInteger retryCount;
+		[Export ("retryCount")]
+		nint RetryCount { get; }
 	}
 
 	// typedef void (^EnrollmentCallback)(ZoomEnrollmentResult * _Nonnull);
@@ -87,39 +172,48 @@ namespace Zoom
 	{
 		// +(NSString * _Nonnull)getVersion;
 		[Static]
-		[Export("getVersion")]
+		[Export ("getVersion")]
 		string Version { get; }
 
 		// +(ZoomSDKStatus)getStatus;
 		[Static]
-		[Export("getStatus")]
+		[Export ("getStatus")]
 		ZoomSDKStatus Status { get; }
+
+		// +(void)setAuditTrailEnabled:(BOOL)enabled;
+		[Static]
+		[Export ("setAuditTrailEnabled:")]
+		void SetAuditTrailEnabled (bool enabled);
 
 		// +(BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID;
 		[Static]
-		[Export("isUserEnrolledWithUserID:")]
-		bool IsUserEnrolled(string userID);
+		[Export ("isUserEnrolledWithUserID:")]
+		bool IsUserEnrolled (string userID);
+
+		// +(void)preload;
+		[Static]
+		[Export ("preload")]
+		void Preload ();
 
 		// +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
 		[Static]
-		[Export("initializeWithAppToken:enrollmentStrategy:completion:")]
+		[Export ("initializeWithAppToken:enrollmentStrategy:completion:")]
 		void Initialize(string appToken, ZoomStrategy enrollmentStrategy, InitializeCallback completion);
 
-        // +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
-        [Static]
-        [Export("initializeWithAppToken:enrollmentStrategy:interfaceCustomization:completion:")]
-        void Initialize(string appToken, ZoomStrategy enrollmentStrategy, ZoomCustomization customization, InitializeCallback completion);
-
-		// +(ZoomEnrollmentViewController * _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
+		// +(UIViewController * _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 		[Static]
-		[Export("prepareEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
-		UIViewController PrepareEnrollmentVC(EnrollmentCallback callback, string userID, string applicationPerUserEncryptionSecret);
+		[Export ("createEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
+		UIViewController CreateEnrollmentVC(EnrollmentCallback callback, string userID, string applicationPerUserEncryptionSecret);
 
-		// +(ZoomAuthenticationViewController * _Nonnull)prepareAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
+		// +(UIViewController * _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 		[Static]
-		[Export("prepareAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
-		UIViewController PrepareAuthenticationVC(AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret);
+		[Export ("createAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
+		UIViewController CreateAuthenticationVC (AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret);
 
+		// +(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization;
+		[Static]
+		[Export ("setCustomizationWithInterfaceCustomization:")]
+		void SetCustomization (ZoomCustomization interfaceCustomization);
 	}
 
 	// @interface ZoomCustomization : NSObject
@@ -131,17 +225,25 @@ namespace Zoom
 		[Export ("showAuthenticationFactorsTabBar")]
 		bool ShowAuthenticationFactorsTabBar { get; set; }
 
-		// @property (nonatomic) BOOL showAuthenticationIntroLogo;
-		[Export ("showAuthenticationIntroLogo")]
-		bool ShowAuthenticationIntroLogo { get; set; }
+		// @property (nonatomic) BOOL showZoomIntro;
+		[Export ("showZoomIntro")]
+		bool ShowZoomIntro { get; set; }
 
-		// @property (nonatomic) BOOL showEnrollmentIntro;
-		[Export ("showEnrollmentIntro")]
-		bool ShowEnrollmentIntro { get; set; }
+		// @property (nonatomic) BOOL showPreEnrollmentScreen;
+		[Export ("showPreEnrollmentScreen")]
+		bool ShowPreEnrollmentScreen { get; set; }
 
 		// @property (nonatomic) BOOL showUserLockedScreen;
 		[Export ("showUserLockedScreen")]
 		bool ShowUserLockedScreen { get; set; }
+
+		// @property (nonatomic) BOOL showSuccessScreen;
+		[Export ("showSuccessScreen")]
+		bool ShowSuccessScreen { get; set; }
+
+		// @property (nonatomic) BOOL showFailureScreen;
+		[Export ("showFailureScreen")]
+		bool ShowFailureScreen { get; set; }
 
 		// @property (copy, nonatomic) NSArray<UIColor *> * _Nonnull mainBackgroundColors;
 		[Export ("mainBackgroundColors", ArgumentSemantic.Copy)]
@@ -154,6 +256,10 @@ namespace Zoom
 		// @property (nonatomic, strong) UIColor * _Nonnull buttonTextNormalColor;
 		[Export ("buttonTextNormalColor", ArgumentSemantic.Strong)]
 		UIColor ButtonTextNormalColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull buttonBackgroundNormalColor;
+		[Export ("buttonBackgroundNormalColor", ArgumentSemantic.Strong)]
+		UIColor ButtonBackgroundNormalColor { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Nonnull buttonTextHighlightColor;
 		[Export ("buttonTextHighlightColor", ArgumentSemantic.Strong)]
@@ -219,4 +325,6 @@ namespace Zoom
 		[NullAllowed, Export ("brandingLogo", ArgumentSemantic.Strong)]
 		UIImage BrandingLogo { get; set; }
 	}
+
+
 }

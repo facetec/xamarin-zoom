@@ -23,7 +23,7 @@ ZoomDelegate* cachedDelegate;
 
 @implementation ZoomAuthenticationBridge : NSObject
 
-+ (NSString*)getVersion {
++(NSString*)getVersion {
     return [[Zoom sdk] version];
 }
 
@@ -31,38 +31,40 @@ ZoomDelegate* cachedDelegate;
     return [[Zoom sdk] getStatus];
 }
 
-+ (BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID {
++(void)setAuditTrailEnabled:(BOOL)enabled {
+    [Zoom sdk].auditTrailEnabled = enabled;
+}
+
++(BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID {
     return [[Zoom sdk] isUserEnrolledWithUserID:userID];
+}
+
++(void)preload {
+    [[Zoom sdk] preload];
 }
 
 +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)
     enrollmentStrategy completion:(InitializeCallback _Nonnull)completion {
-    [self initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy interfaceCustomization:NULL completion:completion];
+    return [[Zoom sdk] initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy completion:completion];
 }
 
-+(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy interfaceCustomization:(ZoomCustomization*)customization completion:(InitializeCallback _Nonnull)completion {
++(UIViewController* _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret; {
     
-    [[Zoom sdk] preload];
-    
-    return [[Zoom sdk] initializeWithAppToken:appToken enrollmentStrategy:enrollmentStrategy interfaceCustomization:customization completion:completion];
-}
-
-+(ZoomEnrollmentViewController* _Nonnull)prepareEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret; {
-    
-    ZoomEnrollmentViewController* vc = [[Zoom sdk] createEnrollmentVC];
     cachedDelegate = [[ZoomDelegate alloc] initWithEnrollmentCallback: callback];
-    [vc prepareForEnrollmentWithDelegate:cachedDelegate userID:userID applicationPerUserEncryptionSecret:applicationPerUserEncryptionSecret secret:nil];
+    UIViewController* vc = [[Zoom sdk] createEnrollmentVCWithDelegate:cachedDelegate userID:userID applicationPerUserEncryptionSecret:applicationPerUserEncryptionSecret secret:nil];
     
     return vc;
 }
 
-+(ZoomAuthenticationViewController* _Nonnull)prepareAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(id)userID applicationPerUserEncryptionSecret:(id)applicationPerUserEncryptionSecret {
++(UIViewController* _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(id)userID applicationPerUserEncryptionSecret:(id)applicationPerUserEncryptionSecret {
     
-    ZoomAuthenticationViewController* vc = [[Zoom sdk] createAuthenticationVC];
     cachedDelegate = [[ZoomDelegate alloc] initWithAuthenticationCallback: callback];
-    [vc prepareForAuthenticationWithDelegate:cachedDelegate userID:userID applicationPerUserEncryptionSecret:applicationPerUserEncryptionSecret];
-    
+    UIViewController* vc = [[Zoom sdk] createAuthenticationVCWithDelegate:cachedDelegate userID:userID applicationPerUserEncryptionSecret:applicationPerUserEncryptionSecret];
     return vc;
+}
+
++(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization {
+    [[Zoom sdk] setCustomizationWithInterfaceCustomization:interfaceCustomization];
 }
 
 @end

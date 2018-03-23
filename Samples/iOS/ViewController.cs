@@ -30,16 +30,22 @@ namespace Sample.iOS
 
 			VersionLabel.Text = "Zoom SDK v" + Zoom.Sdk.Version;
 
-			Zoom.Sdk.Initialize(appToken, Zoom.ZoomStrategy.ZoomOnly, onInitializeResult);
+            // Set any customizations to ZoOm's default UI and behavior
+            var customization = new Zoom.ZoomCustomization();
+            Zoom.Sdk.SetCustomization(customization);
+
+            // Initialize the SDK before trying to use it
+            Zoom.Sdk.Initialize(appToken, Zoom.ZoomStrategy.ZoomOnly, onInitializeResult);
 		}
 
+        // Enroll a new user
 		private void startEnrollment()
 		{
             var controller = Zoom.Sdk.CreateEnrollmentVC(onEnrollmentResult, userId, encryptionSecret);
-			PresentViewController(controller, false, null);
-
+            PresentViewController(controller, false, null);
 		}
 
+        // Authenticate an enrolled user
 		private void startAuthentication()
 		{
 			if (Zoom.Sdk.IsUserEnrolled(userId)) {
@@ -51,6 +57,13 @@ namespace Sample.iOS
 				showAlert("", "User doesn't exist.");
 			}
 		}
+
+        // Verify a user's liveness
+        private void startVerification() 
+        {
+            var controller = Zoom.Sdk.CreateVerificationVC(onVerificationResult, null);   
+            PresentViewController(controller, false, null);
+        }
 
 		private void onEnrollmentResult(ZoomEnrollmentResult result)
 		{
@@ -65,6 +78,11 @@ namespace Sample.iOS
 		{
 			showAlert("Auth Result", result.Description);
 		}
+
+        private void onVerificationResult(ZoomVerificationResult result)
+        {
+            showAlert("Verification Result", result.Description);
+        }
 
 		private void onInitializeResult(bool success)
 		{

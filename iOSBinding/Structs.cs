@@ -4,6 +4,14 @@ using ObjCRuntime;
 namespace Zoom
 {
 	
+	public enum AuditTrailType
+	{
+		Disabled = 0,
+		FullResolution = 1,
+		Height640 = 2
+	}
+
+	
 	public enum ZoomAuthenticationStatus
 	{
 		UserWasAuthenticated = 0,
@@ -20,7 +28,8 @@ namespace Zoom
 		FailedBecauseWifiNotOnInDevMode = 11,
 		FailedBecauseNoConnectionInDevMode = 12,
 		FailedBecauseTouchIDSettingsChanged = 13,
-		FailedBecauseOfflineSessionsExceeded = 14
+		FailedBecauseOfflineSessionsExceeded = 14,
+		FailedBecauseEncryptionKeyInvalid = 15
 	}
 
 	
@@ -69,7 +78,8 @@ namespace Zoom
 		FailedBecauseWifiNotOnInDevMode = 12,
 		FailedBecauseNoConnectionInDevMode = 13,
 		UserFailedToProvideGoodEnrollment = 14,
-		FailedBecauseOfflineSessionsExceeded = 15
+		FailedBecauseOfflineSessionsExceeded = 15,
+		FailedBecauseEncryptionKeyInvalid = 16
 	}
 
 	
@@ -122,5 +132,24 @@ namespace Zoom
 		Enrolled = 0,
 		NotEnrolled = 1,
 		Invalidated = 2
+	}
+
+	
+	public enum ZoomVerificationStatus
+	{
+		UserProcessedSuccessfully = 0,
+		UserNotProcessed = 1,
+		FailedBecauseUserCancelled = 2,
+		FailedBecauseAppTokenNotValid = 3,
+		FailedBecauseCameraPermissionDeniedByUser = 4,
+		FailedBecauseCameraPermissionDeniedByAdministrator = 5,
+		FailedBecauseOfOSContextSwitch = 6,
+		FailedBecauseOfTimeout = 7,
+		FailedBecauseOfLowMemory = 8,
+		FailedBecauseOfDiskWriteError = 9,
+		FailedBecauseWifiNotOnInDevMode = 10,
+		FailedBecauseNoConnectionInDevMode = 11,
+		FailedBecauseOfflineSessionsExceeded = 12,
+		FailedBecauseEncryptionKeyInvalid = 13
 	}
 }

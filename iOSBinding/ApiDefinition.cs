@@ -104,6 +104,25 @@ namespace Zoom
 		string Description { get; }
 	}
 
+	// @interface ZoomVerificationResult : NSObject
+	[BaseType (typeof(NSObject))]
+	[Protocol]
+	[DisableDefaultCtor]
+	interface ZoomVerificationResult
+	{
+		// @property (readonly, nonatomic) enum ZoomVerificationStatus status;
+		[Export ("status")]
+		ZoomVerificationStatus Status { get; }
+
+		// @property (readonly, nonatomic, strong) ZoomFaceBiometricMetrics * _Nullable faceMetrics;
+		[NullAllowed, Export ("faceMetrics", ArgumentSemantic.Strong)]
+		ZoomFaceBiometricMetrics FaceMetrics { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull description;
+		[Export ("description")]
+		string Description { get; }
+	}
+
 	// @interface ZoomFaceBiometricMetrics : NSObject
 	[BaseType (typeof(NSObject))]
     [Protocol]
@@ -163,6 +182,9 @@ namespace Zoom
 	// typedef void (^AuthenticationCallback)(ZoomAuthenticationResult * _Nonnull);
 	delegate void AuthenticationCallback(ZoomAuthenticationResult result);
 
+	// typedef void (^VerificationCallback)(ZoomVerificationResult * _Nonnull);
+	delegate void VerificationCallback (ZoomVerificationResult result);
+
 	// typedef void (^InitializeCallback)(BOOL);
 	delegate void InitializeCallback(bool success);
 
@@ -198,7 +220,7 @@ namespace Zoom
 		// +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
 		[Static]
 		[Export ("initializeWithAppToken:enrollmentStrategy:completion:")]
-		void Initialize(string appToken, ZoomStrategy enrollmentStrategy, InitializeCallback completion);
+		void Initialize (string appToken, ZoomStrategy enrollmentStrategy, InitializeCallback completion);
 
 		// +(UIViewController * _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 		[Static]
@@ -209,6 +231,11 @@ namespace Zoom
 		[Static]
 		[Export ("createAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
 		UIViewController CreateAuthenticationVC (AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret);
+
+		// +(UIViewController * _Nonnull)createVerificationVCWithDelegate:(VerificationCallback _Nonnull)callback verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages;
+		[Static]
+		[Export ("createVerificationVCWithDelegate:verificationImages:")]
+		UIViewController CreateVerificationVC (VerificationCallback callback, [NullAllowed] UIImage[] verificationImages);
 
 		// +(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization;
 		[Static]
@@ -325,6 +352,5 @@ namespace Zoom
 		[NullAllowed, Export ("brandingLogo", ArgumentSemantic.Strong)]
 		UIImage BrandingLogo { get; set; }
 	}
-
 
 }

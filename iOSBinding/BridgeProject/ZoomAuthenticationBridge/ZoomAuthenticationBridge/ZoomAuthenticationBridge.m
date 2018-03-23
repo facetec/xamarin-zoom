@@ -8,14 +8,17 @@
 #import "ZoomAuthenticationBridge.h"
 @import ZoomAuthentication;
 
-@interface ZoomDelegate : NSObject<ZoomEnrollmentDelegate, ZoomAuthenticationDelegate>
+@interface ZoomDelegate : NSObject<ZoomEnrollmentDelegate, ZoomAuthenticationDelegate, ZoomVerificationDelegate>
 @property(nonatomic) EnrollmentCallback enrollmentCallback;
 @property(nonatomic) AuthenticationCallback authenticationCallback;
+@property(nonatomic) VerificationCallback verificationCallback;
 
 - (id) initWithEnrollmentCallback:(EnrollmentCallback)callback;
 - (id) initWithAuthenticationCallback:(AuthenticationCallback)callback;
-- (void) onZoomEnrollmentResultWithResult:(ZoomEnrollmentResult *)result;
+- (id) initWithVerificationCallback:(VerificationCallback)callback;
+- (void) onZoomEnrollmentResultWithResult:(ZoomEnrollmentResult * _Nonnull)result;
 - (void) onZoomAuthenticationResultWithResult:(ZoomAuthenticationResult * _Nonnull)result;
+- (void) onZoomVerificationResultWithResult:(ZoomVerificationResult * _Nonnull)result;
 
 @end
 
@@ -63,6 +66,13 @@ ZoomDelegate* cachedDelegate;
     return vc;
 }
 
++(UIViewController * _Nonnull)createVerificationVCWithDelegate:(VerificationCallback _Nonnull)callback verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages {
+    cachedDelegate = [[ZoomDelegate alloc] initWithVerificationCallback: callback];
+    UIViewController *vc = [[Zoom sdk] createVerificationVCWithDelegate:cachedDelegate verificationImages:verificationImages retrieveZoomBiometric:false];
+    
+    return vc;
+}
+
 +(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization {
     [[Zoom sdk] setCustomizationWithInterfaceCustomization:interfaceCustomization];
 }
@@ -81,6 +91,11 @@ ZoomDelegate* cachedDelegate;
     return self;
 }
 
+- (id)initWithVerificationCallback:(VerificationCallback)callback {
+    self.verificationCallback = callback;
+    return self;
+}
+
 - (void)onZoomEnrollmentResultWithResult:(ZoomEnrollmentResult * _Nonnull)result {
     self.enrollmentCallback(result);
     cachedDelegate = nil;
@@ -88,6 +103,11 @@ ZoomDelegate* cachedDelegate;
 }
 - (void) onZoomAuthenticationResultWithResult:(ZoomAuthenticationResult * _Nonnull)result {
     self.authenticationCallback(result);
+    cachedDelegate = nil;
+    return;
+}
+- (void) onZoomVerificationResultWithResult:(ZoomVerificationResult * _Nonnull)result {
+    self.verificationCallback(result);
     cachedDelegate = nil;
     return;
 }

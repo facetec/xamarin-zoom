@@ -28,7 +28,14 @@
         </class>
     </add-node>
 
+    <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
+        <class name="ZoomVerificationActivity" abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" static="false" visibility="public">
+        </class>
+    </add-node>
+
     <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[@name='ZoomCustomization']"/>
+    <!-- Xamarin hates private inner types for some reason -->
+    <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[contains(@name,'ZoomCustomization.')]"/>
 
     <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
 
@@ -96,14 +103,14 @@
                 <parameter name="p0" type="boolean">
                 </parameter>
             </method>
-            <!--method abstract="false" deprecated="not deprecated" final="false" name="setCustomization" native="false" return="void" static="true" synchronized="false" visibility="public">
+            <method abstract="false" deprecated="not deprecated" final="false" name="setCustomization" native="false" return="void" static="true" synchronized="false" visibility="public">
                 <parameter name="p0" type="com.facetec.zoom.sdk.ZoomCustomization">
                 </parameter>
-            </method-->
-            <!--method abstract="false" deprecated="not deprecated" final="false" name="setVerificationImages" native="false" return="void" static="true" synchronized="false" visibility="public">
+            </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="setVerificationImages" native="false" return="void" static="true" synchronized="false" visibility="public">
                 <parameter name="p0" type="java.util.ArrayList&lt;android.graphics.Bitmap&gt;">
                 </parameter>
-            </method-->
+            </method>
             <method abstract="false" deprecated="not deprecated" final="false" name="version" native="false" return="java.lang.String" static="true" synchronized="false" visibility="public">
             </method>
             <field deprecated="not deprecated" final="true" name="EXTRA_AUTHENTICATION_USER_ID" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;authenticationUserId&quot;" visibility="public" volatile="false">
@@ -156,6 +163,7 @@
             </field>
         </class>
 
+        <!-- ZoomSDK.InitializeCallback -->
         <class abstract="true" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ZoomSDK.InitializeCallback" static="true" visibility="public">
           <constructor deprecated="not deprecated" final="false" name="ZoomSDK.InitializeCallback" static="false" type="com.facetec.zoom.sdk.ZoomSDK.InitializeCallback" visibility="public">
           </constructor>
@@ -164,6 +172,67 @@
             </parameter>
           </method>
         </class>
+
+        <!-- ZoomCustomization -->
+        <!-- NOTE: Xamarin does not play well with the obfuscator.  Need to simplify the public class so that we don't have to manually define it. -->
+        <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="ZoomCustomization" static="false" visibility="public">
+            <constructor deprecated="not deprecated" final="false" name="ZoomCustomization" static="false" type="com.facetec.zoom.sdk.ZoomCustomization" visibility="public">
+            </constructor>
+            <field deprecated="not deprecated" final="false" name="brandingLogo" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="buttonBackgroundHighlightColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="buttonBackgroundNormalColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="buttonTextHighlightColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="buttonTextNormalColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="fingerprintSuccessColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="mainBackgroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="mainForegroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="progressBackgroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="progressForegroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="progressSpinnerColor1" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="progressSpinnerColor2" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="resultsScreenBackground" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="resultsScreenForegroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="showAuthenticationFactorsTabBar" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="showFailureScreen" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="showPreEnrollmentScreen" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="showSuccessScreen" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="showUserLockedScreen" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="showZoomIntro" static="false" transient="false" type="boolean" type-generic-aware="boolean" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="tabSelectedBackgroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="tabSelectedForegroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="tabSuccessBackgroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="tabSuccessForeground" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="tabUnselectedBackground" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="false" name="tabUnselectedForegroundColor" static="false" transient="false" type="int" type-generic-aware="int" visibility="public" volatile="false">
+            </field>
+        </class>
+
+
     </add-node>
     
 </metadata>

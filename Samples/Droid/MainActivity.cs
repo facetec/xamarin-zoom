@@ -39,9 +39,15 @@ namespace Sample.Droid
 		{
 			base.OnStart();
 
+            // Set any customizations to ZoOm's default UI and behavior
+            var customization = new ZoomCustomization();
+            ZoomSDK.SetCustomization(customization);
+
+            // Initialize the SDK before trying to use it
 			ZoomSDK.Initialize(this, appToken, ZoomStrategy.ZoomOnly, new ZoomInitializeCallback(this));
 		}
 
+        // Enroll a new user
 		private void startEnrollment()
 		{
 			Intent enrollmentIntent = new Intent(this, typeof(ZoomEnrollmentActivity));
@@ -51,6 +57,7 @@ namespace Sample.Droid
 			StartActivityForResult(enrollmentIntent, ZoomSDK.RequestCodeEnrollment);
 		}
 
+        // Authenticate an enrolled user
 		private void startAuth()
 		{
 			if (ZoomSDK.IsUserEnrolled(this, userId))
@@ -67,6 +74,17 @@ namespace Sample.Droid
 			}
 		}
 
+        // Verify a user's liveness
+        private void startVerification() 
+        {
+            Intent verificationIntent = new Intent(this, typeof(ZoomVerificationActivity));
+
+            // You can optionally provide an image for the user to be compared to. 
+            ZoomSDK.SetVerificationImages(new System.Collections.Generic.List<Android.Graphics.Bitmap>());
+
+            StartActivityForResult(verificationIntent, ZoomSDK.RequestCodeVerification);
+        }
+
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			if (resultCode == Result.Ok)
@@ -81,11 +99,26 @@ namespace Sample.Droid
 
 					showAlert(result.Status.ToString());
 				}
-				else
+                else if (requestCode == ZoomSDK.RequestCodeAuthentication)
 				{
 					ZoomAuthenticationResult result = (ZoomAuthenticationResult)data.GetParcelableExtra(ZoomSDK.ExtraAuthResults);
+
+                    if (result.FaceMetrics != null)
+                    {
+
+                    }
+
 					showAlert(result.Status.ToString());
 				}
+                else if (requestCode == ZoomSDK.RequestCodeVerification) 
+                {
+                    ZoomVerificationResult result = (ZoomVerificationResult)data.GetParcelableExtra(ZoomSDK.ExtraVerifyResults);
+
+                    if (result.FaceMetrics != null)
+                    {
+                        
+                    }
+                }
 			}
 		}
 

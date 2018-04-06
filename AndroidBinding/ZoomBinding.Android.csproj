@@ -15,12 +15,12 @@
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Xamarin.Zoom.AndroidLibrary</PackageId>
-    <PackageVersion>6.1.2</PackageVersion>
+    <PackageVersion>6.1.8</PackageVersion>
     <Authors>FaceTec, Inc</Authors>
     <Description>A Xamarin library to provide access to FaceTec's ZoOm Android SDK - 3D Face Login + TrueLiveness</Description>
     <Owners>FaceTec, Inc</Owners>
     <PackageProjectUrl>https://github.com/facetec/xamarin-zoom</PackageProjectUrl>
-    <ReleaseVersion>6.1.2</ReleaseVersion>
+    <ReleaseVersion>6.1.8</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

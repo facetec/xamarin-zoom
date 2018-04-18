@@ -29,12 +29,18 @@ typedef void(^InitializeCallback)(BOOL success);
 
 +(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(ZoomStrategy)enrollmentStrategy completion:(InitializeCallback _Nonnull)completion;
 
-+(UIViewController* _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull )callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
++(UIViewController* _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull )callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret secret:(NSString * _Nullable)secret;
+
++(UIViewController * _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull )callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret secret:(NSString * _Nullable)secret verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric;
 
 +(UIViewController* _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
+
++(UIViewController * _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric;
 
 +(UIViewController * _Nonnull)createVerificationVCWithDelegate:(VerificationCallback _Nonnull)callback verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages;
 
 +(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization;
+
++(void)setHybridEncryptionKeyWithPublicKey:(NSString * _Nonnull)publicKey;
 
 @end

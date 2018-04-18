@@ -141,6 +141,10 @@ namespace Zoom
 		[Export ("livenessScore")]
 		float LivenessScore { get; }
 
+		// @property (readonly, nonatomic) enum ZoomExternalImageSetVerificationResult externalImageSetVerificationResult;
+		[Export ("externalImageSetVerificationResult")]
+        ZoomExternalImageSetVerificationResult ExternalImageSetVerificationResult { get; }
+
 		// @property (readonly, copy, nonatomic) NSString * _Nullable zoomFacemap;
 		[NullAllowed, Export ("zoomFacemap")]
 		string ZoomFacemap { get; }
@@ -222,15 +226,25 @@ namespace Zoom
 		[Export ("initializeWithAppToken:enrollmentStrategy:completion:")]
 		void Initialize (string appToken, ZoomStrategy enrollmentStrategy, InitializeCallback completion);
 
-		// +(UIViewController * _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
+		// +(UIViewController * _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret secret:(NSString * _Nullable)secret;
 		[Static]
-		[Export ("createEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
-		UIViewController CreateEnrollmentVC(EnrollmentCallback callback, string userID, string applicationPerUserEncryptionSecret);
+		[Export ("createEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:secret:")]
+		UIViewController CreateEnrollmentVC(EnrollmentCallback callback, string userID, string applicationPerUserEncryptionSecret, [NullAllowed] string secret);
+
+		// +(UIViewController * _Nonnull)createEnrollmentVCWithCallback:(EnrollmentCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret secret:(NSString * _Nullable)secret verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric;
+		[Static]
+		[Export ("createEnrollmentVCWithCallback:userID:applicationPerUserEncryptionSecret:secret:verificationImages:retrieveZoomBiometric:")]
+		UIViewController CreateEnrollmentVC (EnrollmentCallback callback, string userID, string applicationPerUserEncryptionSecret, [NullAllowed] string secret, [NullAllowed] UIImage[] verificationImages, bool retrieveZoomBiometric);
 
 		// +(UIViewController * _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret;
 		[Static]
 		[Export ("createAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:")]
 		UIViewController CreateAuthenticationVC (AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret);
+
+		// +(UIViewController * _Nonnull)createAuthenticationVCWithCallback:(AuthenticationCallback _Nonnull)callback userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric;
+		[Static]
+		[Export ("createAuthenticationVCWithCallback:userID:applicationPerUserEncryptionSecret:verificationImages:retrieveZoomBiometric:")]
+		UIViewController CreateAuthenticationVC (AuthenticationCallback callback, string userID, string applicationPerUserEncryptionSecret, [NullAllowed] UIImage[] verificationImages, bool retrieveZoomBiometric);
 
 		// +(UIViewController * _Nonnull)createVerificationVCWithDelegate:(VerificationCallback _Nonnull)callback verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages;
 		[Static]
@@ -241,6 +255,11 @@ namespace Zoom
 		[Static]
 		[Export ("setCustomizationWithInterfaceCustomization:")]
 		void SetCustomization (ZoomCustomization interfaceCustomization);
+
+		// +(void)setHybridEncryptionKeyWithPublicKey:(NSString * _Nonnull)publicKey;
+		[Static]
+		[Export ("setHybridEncryptionKeyWithPublicKey:")]
+		void SetHybridEncryptionKeyWithPublicKey (string publicKey);
 	}
 
 	// @interface ZoomCustomization : NSObject

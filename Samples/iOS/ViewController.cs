@@ -41,7 +41,7 @@ namespace Sample.iOS
         // Enroll a new user
 		private void startEnrollment()
 		{
-            var controller = Zoom.Sdk.CreateEnrollmentVC(onEnrollmentResult, userId, encryptionSecret);
+            var controller = Zoom.Sdk.CreateEnrollmentVC(onEnrollmentResult, userId, encryptionSecret, null);
             PresentViewController(controller, false, null);
 		}
 

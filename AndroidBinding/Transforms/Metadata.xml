@@ -107,6 +107,10 @@
                 <parameter name="p0" type="com.facetec.zoom.sdk.ZoomCustomization">
                 </parameter>
             </method>
+            <method abstract="false" deprecated="not deprecated" final="false" name="setHybridEncryptionKey" native="false" return="void" static="true" synchronized="false" visibility="public">
+                <parameter name="publicKey" type="java.lang.String">
+                </parameter>
+            </method>
             <method abstract="false" deprecated="not deprecated" final="false" name="setVerificationImages" native="false" return="void" static="true" synchronized="false" visibility="public">
                 <parameter name="p0" type="java.util.ArrayList&lt;android.graphics.Bitmap&gt;">
                 </parameter>

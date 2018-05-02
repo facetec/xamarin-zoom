@@ -1,18 +1,18 @@
 using System;
 using ObjCRuntime;
 
-namespace Zoom
+namespace ZoomAuthentication
 {
-
-	public enum AuditTrailType
+	[Native]
+	public enum AuditTrailType : ulong
 	{
 		Disabled = 0,
 		FullResolution = 1,
 		Height640 = 2
 	}
 
-
-	public enum ZoomAuthenticationStatus
+	[Native]
+	public enum ZoomAuthenticationStatus : ulong
 	{
 		UserWasAuthenticated = 0,
 		FailedBecauseAppTokenNotValid = 1,
@@ -30,11 +30,12 @@ namespace Zoom
 		FailedBecauseNoConnectionInDevMode = 13,
 		FailedBecauseTouchIDSettingsChanged = 14,
 		FailedBecauseOfflineSessionsExceeded = 15,
-		FailedBecauseEncryptionKeyInvalid = 16
+		FailedBecauseEncryptionSecretInvalid = 16,
+		FailedBecauseEncryptionKeyInvalid = 17
 	}
 
-
-	public enum ZoomAuthenticatorState
+	[Native]
+	public enum ZoomAuthenticatorState : ulong
 	{
 		Unused = 0,
 		Cancelled = 1,
@@ -42,8 +43,8 @@ namespace Zoom
 		Completed = 3
 	}
 
-
-	public enum ZoomCameraPermissionStatus
+	[Native]
+	public enum ZoomCameraPermissionStatus : ulong
 	{
 		NotDetermined = 0,
 		Denied = 1,
@@ -51,8 +52,8 @@ namespace Zoom
 		Authorized = 3
 	}
 
-
-	public enum ZoomEffectiveStrategy
+	[Native]
+	public enum ZoomEffectiveStrategy : ulong
 	{
 		NotEnrolled = 0,
 		Zoom = 1,
@@ -61,8 +62,8 @@ namespace Zoom
 		ZoomAndFingerAndPin = 4
 	}
 
-
-	public enum ZoomEnrollmentStatus
+	[Native]
+	public enum ZoomEnrollmentStatus : ulong
 	{
 		UserWasEnrolled = 0,
 		UserNotEnrolled = 1,
@@ -83,16 +84,16 @@ namespace Zoom
 		FailedBecauseEncryptionKeyInvalid = 16
 	}
 
-
-	public enum ZoomExternalImageSetVerificationResult
+	[Native]
+	public enum ZoomExternalImageSetVerificationResult : ulong
 	{
 		CouldNotDetermineMatch = 0,
 		LowConfidenceMatch = 1,
 		Match = 2
 	}
 
-
-	public enum ZoomFingerprintHardwareCapability
+	[Native]
+	public enum ZoomFingerprintHardwareCapability : ulong
 	{
 		NeverAvailable = 0,
 		NotCurrentlyAvailable = 1,
@@ -100,15 +101,22 @@ namespace Zoom
 		Available = 3
 	}
 
+	[Native]
+	public enum ZoomHybridBiometricStorageMode : ulong
+	{
+		Standard = 0,
+		Enhanced = 1
+	}
 
-	public enum ZoomLivenessResult
+	[Native]
+	public enum ZoomLivenessResult : ulong
 	{
 		LivenessUndetermined = 0,
 		Alive = 1
 	}
 
-
-	public enum ZoomSDKStatus
+	[Native]
+	public enum ZoomSDKStatus : ulong
 	{
 		NeverInitialized = 0,
 		Initialized = 1,
@@ -119,24 +127,22 @@ namespace Zoom
 		OfflineSessionsExceeded = 6
 	}
 
-
-	public enum ZoomStrategy
+	[Native]
+	public enum ZoomStrategy : ulong
 	{
-		ZoomOnly = 1,
-		TwoFactor = 2,
-		ThreeFactor = 3
+		ZoomOnly = 1
 	}
 
-
-	public enum ZoomUserEnrollmentStatus
+	[Native]
+	public enum ZoomUserEnrollmentStatus : ulong
 	{
 		Enrolled = 0,
 		NotEnrolled = 1,
 		Invalidated = 2
 	}
 
-
-	public enum ZoomVerificationStatus
+	[Native]
+	public enum ZoomVerificationStatus : ulong
 	{
 		UserProcessedSuccessfully = 0,
 		UserNotProcessed = 1,

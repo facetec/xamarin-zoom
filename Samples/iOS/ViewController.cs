@@ -1,12 +1,12 @@
 ﻿using System;
 
 using UIKit;
-using Zoom;
+using ZoomAuthentication;
 using CoreGraphics;
 
 namespace Sample.iOS
 {
-	public partial class ViewController : UIViewController
+    public partial class ViewController : UIViewController, IZoomEnrollmentDelegate, IZoomAuthenticationDelegate, IZoomVerificationDelegate
 	{
 		String appToken = "YOUR APP TOKEN HERE";
 		String userId = "myUserId";
@@ -31,17 +31,17 @@ namespace Sample.iOS
 			VersionLabel.Text = "Zoom SDK v" + Zoom.Sdk.Version;
 
             // Set any customizations to ZoOm's default UI and behavior
-            var customization = new Zoom.ZoomCustomization();
+            var customization = new ZoomCustomization();
             Zoom.Sdk.SetCustomization(customization);
 
             // Initialize the SDK before trying to use it
-            Zoom.Sdk.Initialize(appToken, Zoom.ZoomStrategy.ZoomOnly, onInitializeResult);
+            Zoom.Sdk.Initialize(appToken, ZoomStrategy.ZoomOnly, onInitializeResult);
 		}
 
         // Enroll a new user
 		private void startEnrollment()
 		{
-            var controller = Zoom.Sdk.CreateEnrollmentVC(onEnrollmentResult, userId, encryptionSecret, null);
+            var controller = Zoom.Sdk.CreateEnrollmentVC(this, userId, encryptionSecret, null);
             PresentViewController(controller, false, null);
 		}
 
@@ -49,7 +49,7 @@ namespace Sample.iOS
 		private void startAuthentication()
 		{
 			if (Zoom.Sdk.IsUserEnrolled(userId)) {
-                var controller = Zoom.Sdk.CreateAuthenticationVC(onAuthenticationResult, userId, encryptionSecret);
+                var controller = Zoom.Sdk.CreateAuthenticationVC(this, userId, encryptionSecret);
 				PresentViewController(controller, false, null);
 			}
 			else
@@ -61,11 +61,11 @@ namespace Sample.iOS
         // Verify a user's liveness
         private void startVerification() 
         {
-            var controller = Zoom.Sdk.CreateVerificationVC(onVerificationResult, null);   
+            var controller = Zoom.Sdk.CreateVerificationVC(this, null, false);
             PresentViewController(controller, false, null);
         }
 
-		private void onEnrollmentResult(ZoomEnrollmentResult result)
+		public void OnZoomEnrollmentResult(ZoomEnrollmentResult result)
 		{
             if (result.FaceMetrics != null) {
                 
@@ -74,12 +74,12 @@ namespace Sample.iOS
             showAlert("Enroll Result", result.Description);
 		}
 
-		private void onAuthenticationResult(ZoomAuthenticationResult result)
+        public void OnZoomAuthenticationResult(ZoomAuthenticationResult result)
 		{
 			showAlert("Auth Result", result.Description);
 		}
 
-        private void onVerificationResult(ZoomVerificationResult result)
+        public void OnZoomVerificationResult(ZoomVerificationResult result)
         {
             showAlert("Verification Result", result.Description);
         }

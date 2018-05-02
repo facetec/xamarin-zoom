@@ -12,12 +12,12 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Xamarin.Zoom.iOSLibrary</PackageId>
-    <PackageVersion>6.1.9</PackageVersion>
+    <PackageVersion>6.2.1</PackageVersion>
     <Authors>FaceTec, Inc</Authors>
     <Owners>FaceTec, Inc</Owners>
     <PackageProjectUrl>https://github.com/facetec/xamarin-zoom</PackageProjectUrl>
     <Description>A Xamarin library to provide access to FaceTec's ZoOm iOS SDK - 3D Face Login + TrueLiveness</Description>
-    <ReleaseVersion>6.1.9</ReleaseVersion>
+    <ReleaseVersion>6.2.1</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

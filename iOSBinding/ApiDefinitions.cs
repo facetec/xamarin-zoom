@@ -55,30 +55,6 @@ namespace ZoomAuthentication
 		[Export ("countOfFaceFailuresSinceLastSuccess")]
 		nint CountOfFaceFailuresSinceLastSuccess { get; }
 
-		// @property (readonly, nonatomic) enum ZoomAuthenticatorState fingerprintAuthenticatorState;
-		[Export ("fingerprintAuthenticatorState")]
-		ZoomAuthenticatorState FingerprintAuthenticatorState { get; }
-
-		// @property (readonly, nonatomic, strong) ZoomFingerprintMetrics * _Nullable fingerprintMetrics;
-		[NullAllowed, Export ("fingerprintMetrics", ArgumentSemantic.Strong)]
-		ZoomFingerprintMetrics FingerprintMetrics { get; }
-
-		// @property (readonly, nonatomic) NSInteger countOfFingerprintFailuresSinceLastSuccess;
-		[Export ("countOfFingerprintFailuresSinceLastSuccess")]
-		nint CountOfFingerprintFailuresSinceLastSuccess { get; }
-
-		// @property (readonly, nonatomic) enum ZoomAuthenticatorState pinAuthenticatorState;
-		[Export ("pinAuthenticatorState")]
-		ZoomAuthenticatorState PinAuthenticatorState { get; }
-
-		// @property (readonly, nonatomic, strong) ZoomPinMetrics * _Nullable pinMetrics;
-		[NullAllowed, Export ("pinMetrics", ArgumentSemantic.Strong)]
-		ZoomPinMetrics PinMetrics { get; }
-
-		// @property (readonly, nonatomic) NSInteger countOfPinFailuresSinceLastSuccess;
-		[Export ("countOfPinFailuresSinceLastSuccess")]
-		nint CountOfPinFailuresSinceLastSuccess { get; }
-
 		// @property (readonly, nonatomic) NSInteger consecutiveAuthenticationFailures;
 		[Export ("consecutiveAuthenticationFailures")]
 		nint ConsecutiveAuthenticationFailures { get; }
@@ -109,10 +85,6 @@ namespace ZoomAuthentication
 	[BaseType (typeof(NSObject))]
 	interface ZoomCustomization
 	{
-		// @property (nonatomic) BOOL showAuthenticationFactorsTabBar;
-		[Export ("showAuthenticationFactorsTabBar")]
-		bool ShowAuthenticationFactorsTabBar { get; set; }
-
 		// @property (nonatomic) BOOL showZoomIntro;
 		[Export ("showZoomIntro")]
 		bool ShowZoomIntro { get; set; }
@@ -205,13 +177,21 @@ namespace ZoomAuthentication
 		[Export ("tabBackgroundSuccessColor", ArgumentSemantic.Strong)]
 		UIColor TabBackgroundSuccessColor { get; set; }
 
-		// @property (nonatomic, strong) UIColor * _Nonnull fingerprintSuccessColor;
-		[Export ("fingerprintSuccessColor", ArgumentSemantic.Strong)]
-		UIColor FingerprintSuccessColor { get; set; }
-
 		// @property (nonatomic, strong) UIImage * _Nullable brandingLogo;
 		[NullAllowed, Export ("brandingLogo", ArgumentSemantic.Strong)]
 		UIImage BrandingLogo { get; set; }
+
+		// @property (nonatomic, strong) UIImage * _Nullable cancelButtonImage;
+		[NullAllowed, Export ("cancelButtonImage", ArgumentSemantic.Strong)]
+		UIImage CancelButtonImage { get; set; }
+
+		// @property (nonatomic) enum CancelButtonLocation cancelButtonLocation;
+		[Export ("cancelButtonLocation", ArgumentSemantic.Assign)]
+		CancelButtonLocation CancelButtonLocation { get; set; }
+
+		// @property (nonatomic, strong) ZoomInstructions * _Nonnull zoomInstructionsImages;
+		[Export ("zoomInstructionsImages", ArgumentSemantic.Strong)]
+		ZoomInstructions ZoomInstructionsImages { get; set; }
 	}
 
 	// @protocol ZoomEnrollmentDelegate
@@ -243,14 +223,6 @@ namespace ZoomAuthentication
 		// @property (readonly, nonatomic, strong) ZoomFaceBiometricMetrics * _Nullable faceMetrics;
 		[NullAllowed, Export ("faceMetrics", ArgumentSemantic.Strong)]
 		ZoomFaceBiometricMetrics FaceMetrics { get; }
-
-		// @property (readonly, nonatomic) enum ZoomAuthenticatorState fingerprintEnrollmentState;
-		[Export ("fingerprintEnrollmentState")]
-		ZoomAuthenticatorState FingerprintEnrollmentState { get; }
-
-		// @property (readonly, nonatomic) enum ZoomAuthenticatorState pinEnrollmentState;
-		[Export ("pinEnrollmentState")]
-		ZoomAuthenticatorState PinEnrollmentState { get; }
 
 		// @property (readonly, nonatomic) NSInteger countOfZoomSessionsPerformed;
 		[Export ("countOfZoomSessionsPerformed")]
@@ -297,52 +269,30 @@ namespace ZoomAuthentication
 		ZoomFaceBiometricMetrics New ();
 	}
 
-	// @interface ZoomFingerprintMetrics : NSObject
+	// @interface ZoomInstructions : NSObject
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
-	interface ZoomFingerprintMetrics
+	interface ZoomInstructions
 	{
-		// @property (readonly, nonatomic) BOOL success;
-		[Export ("success")]
-		bool Success { get; }
-
-		// @property (readonly, copy, nonatomic) NSString * _Nullable errorString;
-		[NullAllowed, Export ("errorString")]
-		string ErrorString { get; }
+		// -(instancetype _Nonnull)initWithGenericImage:(UIImage * _Nullable)genericImage badLightingImage:(UIImage * _Nullable)badLightingImage badAngleImage:(UIImage * _Nullable)badAngleImage __attribute__((objc_designated_initializer));
+		[Export ("initWithGenericImage:badLightingImage:badAngleImage:")]
+		[DesignatedInitializer]
+		IntPtr Constructor ([NullAllowed] UIImage genericImage, [NullAllowed] UIImage badLightingImage, [NullAllowed] UIImage badAngleImage);
 
 		// +(instancetype _Nonnull)new __attribute__((deprecated("-init is unavailable")));
 		[Static]
 		[Export ("new")]
-		ZoomFingerprintMetrics New ();
-	}
-
-	// @interface ZoomPinMetrics : NSObject
-	[BaseType (typeof(NSObject))]
-	[DisableDefaultCtor]
-	interface ZoomPinMetrics
-	{
-		// @property (readonly, nonatomic) BOOL success;
-		[Export ("success")]
-		bool Success { get; }
-
-		// @property (readonly, nonatomic) NSInteger retryCount;
-		[Export ("retryCount")]
-		nint RetryCount { get; }
-
-		// +(instancetype _Nonnull)new __attribute__((deprecated("-init is unavailable")));
-		[Static]
-		[Export ("new")]
-		ZoomPinMetrics New ();
+		ZoomInstructions New ();
 	}
 
 	// @protocol ZoomSDKProtocol
 	[Protocol, Model]
 	interface ZoomSDKProtocol
 	{
-		// @required -(void)initializeWithAppToken:(NSString * _Nonnull)appToken enrollmentStrategy:(enum ZoomStrategy)enrollmentStrategy completion:(void (^ _Nullable)(BOOL))completion;
+		// @required -(void)initializeWithAppToken:(NSString * _Nonnull)appToken completion:(void (^ _Nullable)(BOOL))completion;
 		[Abstract]
-		[Export ("initializeWithAppToken:enrollmentStrategy:completion:")]
-		void Initialize (string appToken, ZoomStrategy enrollmentStrategy, [NullAllowed] Action<bool> completion);
+		[Export ("initializeWithAppToken:completion:")]
+		void Initialize (string appToken, [NullAllowed] Action<bool> completion);
 
 		// @required -(void)setCustomizationWithInterfaceCustomization:(ZoomCustomization * _Nonnull)interfaceCustomization;
 		[Abstract]
@@ -374,20 +324,10 @@ namespace ZoomAuthentication
 		[Export ("getUserEnrollmentStatusWithUserID:")]
 		ZoomUserEnrollmentStatus GetUserEnrollmentStatus (string userID);
 
-		// @required -(enum ZoomEffectiveStrategy)enrolledAuthenticatorsForUserID:(NSString * _Nonnull)forUserID __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("enrolledAuthenticatorsForUserID:")]
-		ZoomEffectiveStrategy EnrolledAuthenticatorsForUserID (string forUserID);
-
 		// @required @property (readonly, nonatomic) enum ZoomCameraPermissionStatus cameraPermissionStatus;
 		[Abstract]
 		[Export ("cameraPermissionStatus")]
 		ZoomCameraPermissionStatus CameraPermissionStatus { get; }
-
-		// @required @property (readonly, nonatomic) enum ZoomFingerprintHardwareCapability fingerprintStatus;
-		[Abstract]
-		[Export ("fingerprintStatus")]
-		ZoomFingerprintHardwareCapability FingerprintStatus { get; }
 
 		// @required -(BOOL)deleteUserWithUserID:(NSString * _Nonnull)userID error:(NSError * _Nullable * _Nullable)error;
 		[Abstract]

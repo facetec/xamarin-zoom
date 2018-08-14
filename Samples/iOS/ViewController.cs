@@ -35,7 +35,7 @@ namespace Sample.iOS
             Zoom.Sdk.SetCustomization(customization);
 
             // Initialize the SDK before trying to use it
-            Zoom.Sdk.Initialize(appToken, ZoomStrategy.ZoomOnly, onInitializeResult);
+            Zoom.Sdk.Initialize(appToken, onInitializeResult);
 		}
 
         // Enroll a new user

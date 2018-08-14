@@ -44,7 +44,7 @@ namespace Sample.Droid
             ZoomSDK.SetCustomization(customization);
 
             // Initialize the SDK before trying to use it
-			ZoomSDK.Initialize(this, appToken, ZoomStrategy.ZoomOnly, new ZoomInitializeCallback(this));
+			ZoomSDK.Initialize(this, appToken, new ZoomInitializeCallback(this));
 		}
 
         // Enroll a new user

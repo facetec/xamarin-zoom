@@ -12,6 +12,13 @@ namespace ZoomAuthentication
 	}
 
 	[Native]
+	public enum CancelButtonLocation : ulong
+	{
+		Left = 0,
+		Right = 1
+	}
+
+	[Native]
 	public enum ZoomAuthenticationStatus : ulong
 	{
 		UserWasAuthenticated = 0,
@@ -26,12 +33,11 @@ namespace ZoomAuthentication
 		FailedBecauseOfTimeout = 9,
 		FailedBecauseOfLowMemory = 10,
 		FailedBecauseOfOSContextSwitch = 11,
-		FailedBecauseWifiNotOnInDevMode = 12,
-		FailedBecauseNoConnectionInDevMode = 13,
-		FailedBecauseTouchIDSettingsChanged = 14,
-		FailedBecauseOfflineSessionsExceeded = 15,
-		FailedBecauseEncryptionSecretInvalid = 16,
-		FailedBecauseEncryptionKeyInvalid = 17
+		FailedBecauseNoConnectionInDevMode = 12,
+		FailedBecauseTouchIDSettingsChanged = 13,
+		FailedBecauseOfflineSessionsExceeded = 14,
+		FailedBecauseEncryptionSecretInvalid = 15,
+		FailedBecauseEncryptionKeyInvalid = 16
 	}
 
 	[Native]
@@ -53,16 +59,6 @@ namespace ZoomAuthentication
 	}
 
 	[Native]
-	public enum ZoomEffectiveStrategy : ulong
-	{
-		NotEnrolled = 0,
-		Zoom = 1,
-		ZoomAndPin = 2,
-		ZoomAndFinger = 3,
-		ZoomAndFingerAndPin = 4
-	}
-
-	[Native]
 	public enum ZoomEnrollmentStatus : ulong
 	{
 		UserWasEnrolled = 0,
@@ -71,17 +67,14 @@ namespace ZoomAuthentication
 		FailedBecauseAppTokenNotValid = 3,
 		FailedBecauseCameraPermissionDeniedByUser = 4,
 		FailedBecauseCameraPermissionDeniedByAdministrator = 5,
-		FailedBecauseFingerprintDisabled = 6,
-		FailedBecauseUserCouldNotValidateFingerprint = 7,
-		FailedBecauseOfOSContextSwitch = 8,
-		FailedBecauseOfTimeout = 9,
-		FailedBecauseOfLowMemory = 10,
-		FailedBecauseOfDiskWriteError = 11,
-		FailedBecauseWifiNotOnInDevMode = 12,
-		FailedBecauseNoConnectionInDevMode = 13,
-		UserFailedToProvideGoodEnrollment = 14,
-		FailedBecauseOfflineSessionsExceeded = 15,
-		FailedBecauseEncryptionKeyInvalid = 16
+		FailedBecauseOfOSContextSwitch = 6,
+		FailedBecauseOfTimeout = 7,
+		FailedBecauseOfLowMemory = 8,
+		FailedBecauseOfDiskWriteError = 9,
+		FailedBecauseNoConnectionInDevMode = 10,
+		UserFailedToProvideGoodEnrollment = 11,
+		FailedBecauseOfflineSessionsExceeded = 12,
+		FailedBecauseEncryptionKeyInvalid = 13
 	}
 
 	[Native]
@@ -90,15 +83,6 @@ namespace ZoomAuthentication
 		CouldNotDetermineMatch = 0,
 		LowConfidenceMatch = 1,
 		Match = 2
-	}
-
-	[Native]
-	public enum ZoomFingerprintHardwareCapability : ulong
-	{
-		NeverAvailable = 0,
-		NotCurrentlyAvailable = 1,
-		CurrentlyLockedOut = 2,
-		Available = 3
 	}
 
 	[Native]
@@ -128,12 +112,6 @@ namespace ZoomAuthentication
 	}
 
 	[Native]
-	public enum ZoomStrategy : ulong
-	{
-		ZoomOnly = 1
-	}
-
-	[Native]
 	public enum ZoomUserEnrollmentStatus : ulong
 	{
 		Enrolled = 0,
@@ -154,9 +132,8 @@ namespace ZoomAuthentication
 		FailedBecauseOfTimeout = 7,
 		FailedBecauseOfLowMemory = 8,
 		FailedBecauseOfDiskWriteError = 9,
-		FailedBecauseWifiNotOnInDevMode = 10,
-		FailedBecauseNoConnectionInDevMode = 11,
-		FailedBecauseOfflineSessionsExceeded = 12,
-		FailedBecauseEncryptionKeyInvalid = 13
+		FailedBecauseNoConnectionInDevMode = 10,
+		FailedBecauseOfflineSessionsExceeded = 11,
+		FailedBecauseEncryptionKeyInvalid = 12
 	}
 }

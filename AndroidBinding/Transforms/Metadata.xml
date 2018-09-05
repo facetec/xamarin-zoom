@@ -1,32 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
-
-    <!--remove-node path="/api/package[@name='com.android.volley']" />
-    <remove-node path="/api/package[@name='com.android.volley.toolbox']" />
-    <remove-node path="/api/package[@name='com.google.gson.internal']" />
-    <remove-node path="/api/package[@name='com.google.gson.internal.bind']" />
-    <remove-node path="/api/package[@name='com.google.gson']" /-->
 
     <remove-node path="/api/package[@name='com.facetec.zoom.sdk.libs']" />
     <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[@extends='android.app.Fragment']" />
     <remove-node path="/api/package[@name='com.facetec.zoom.sdk']/class[@name='BuildConfig']" />
-
-    <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
-        <class  name="ZoomEnrollmentActivity" abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" static="false" visibility="public">
-        </class>
-    </add-node>
-
-    <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
-        <class name="ZoomAuthenticationActivity" abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" static="false" visibility="public">
-        </class>
-    </add-node>
 
     <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
         <class name="ZoomVerificationActivity" abstract="false" deprecated="not deprecated" extends="android.app.Activity" extends-generic-aware="android.app.Activity" final="false" static="false" visibility="public">
@@ -34,10 +11,9 @@
     </add-node>
 
     <!-- Xamarin hates private inner types for some reason -->
-
     <add-node path="/api/package[@name='com.facetec.zoom.sdk']">
 
 
     </add-node>
-    
+
 </metadata>

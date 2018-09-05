@@ -10,12 +10,12 @@ namespace Sample.Droid
 	[Activity(Label = "Sample", MainLauncher = true, Theme = "@android:style/Theme.NoTitleBar", Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
-		private readonly String appToken = "SET YOUR TOKEN HERE";
+        readonly String appToken = "SET_YOUR_TOKEN_HERE";
 
-		protected static readonly String userId = "myUserId";
-		protected static readonly String encryptionSecret = "myUserEncryptionSecret";
+        // Set your encryption key to retrieve facemaps
+        readonly String hybridEncryptionKey = @"";
 
-		protected Button enrollButton;
+        protected Button enrollButton;
 		protected Button authButton;
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -26,61 +26,44 @@ namespace Sample.Droid
 			SetContentView(Resource.Layout.Main);
 
 			enrollButton = FindViewById<Button>(Resource.Id.enrollButton);
-			enrollButton.Click += delegate { startEnrollment(); };
+            enrollButton.Click += delegate { StartVerification(); };
 
 			authButton = FindViewById<Button>(Resource.Id.authButton);
-			authButton.Click += delegate { startAuth(); };
+			authButton.Click += delegate { };
 
 			String versionStr = "Zoom SDK v" + ZoomSDK.Version();
 			FindViewById<TextView>(Resource.Id.versionText).Text = versionStr;
 		}
 
-		protected override void OnStart()
-		{
-			base.OnStart();
+        protected override void OnStart()
+        {
+            base.OnStart();
 
             // Set any customizations to ZoOm's default UI and behavior
             var customization = new ZoomCustomization();
             ZoomSDK.SetCustomization(customization);
 
             // Initialize the SDK before trying to use it
-			ZoomSDK.Initialize(this, appToken, new ZoomInitializeCallback(this));
-		}
+            ZoomSDK.Initialize(this, appToken, new ZoomInitializeCallback(this));
 
-        // Enroll a new user
-		private void startEnrollment()
-		{
-			Intent enrollmentIntent = new Intent(this, typeof(ZoomEnrollmentActivity));
-			enrollmentIntent.PutExtra(ZoomSDK.ExtraEnrollmentUserId, userId);
-			enrollmentIntent.PutExtra(ZoomSDK.ExtraUserEncryptionSecret, encryptionSecret);
-
-			StartActivityForResult(enrollmentIntent, ZoomSDK.RequestCodeEnrollment);
-		}
-
-        // Authenticate an enrolled user
-		private void startAuth()
-		{
-			if (ZoomSDK.IsUserEnrolled(this, userId))
-			{
-				Intent authenticationIntent = new Intent(this, typeof(ZoomAuthenticationActivity));
-				authenticationIntent.PutExtra(ZoomSDK.ExtraAuthenticationUserId, userId);
-				authenticationIntent.PutExtra(ZoomSDK.ExtraUserEncryptionSecret, encryptionSecret);
-
-				StartActivityForResult(authenticationIntent, ZoomSDK.RequestCodeAuthentication);
-			}
-			else
-			{
-				Toast.MakeText(this, "User not enrolled", ToastLength.Short).Show();
-			}
-		}
+            // Set your biometric encryption key if provided
+            if (hybridEncryptionKey.Length > 0)
+            {
+                ZoomSDK.SetHybridEncryptionKey(hybridEncryptionKey);
+            }
+        }
 
         // Verify a user's liveness
-        private void startVerification() 
+        void StartVerification() 
         {
             Intent verificationIntent = new Intent(this, typeof(ZoomVerificationActivity));
 
-            // You can optionally provide an image for the user to be compared to. 
-            ZoomSDK.SetVerificationImages(new System.Collections.Generic.List<Android.Graphics.Bitmap>());
+            if (hybridEncryptionKey.Length > 0)
+            {
+                verificationIntent.PutExtra(ZoomSDK.ExtraRetrieveZoomBiometric, true);
+            }
+
+           
 
             StartActivityForResult(verificationIntent, ZoomSDK.RequestCodeVerification);
         }
@@ -89,40 +72,19 @@ namespace Sample.Droid
 		{
 			if (resultCode == Result.Ok)
 			{
-				if (requestCode == ZoomSDK.RequestCodeEnrollment)
-				{
-					ZoomEnrollmentResult result = (ZoomEnrollmentResult)data.GetParcelableExtra(ZoomSDK.ExtraEnrollResults);
-              
-                    if (result.FaceMetrics != null) {
-                        
-                    }
-
-					showAlert(result.Status.ToString());
-				}
-                else if (requestCode == ZoomSDK.RequestCodeAuthentication)
-				{
-					ZoomAuthenticationResult result = (ZoomAuthenticationResult)data.GetParcelableExtra(ZoomSDK.ExtraAuthResults);
-
-                    if (result.FaceMetrics != null)
-                    {
-
-                    }
-
-					showAlert(result.Status.ToString());
-				}
-                else if (requestCode == ZoomSDK.RequestCodeVerification) 
+				if (requestCode == ZoomSDK.RequestCodeVerification) 
                 {
                     ZoomVerificationResult result = (ZoomVerificationResult)data.GetParcelableExtra(ZoomSDK.ExtraVerifyResults);
 
                     if (result.FaceMetrics != null)
                     {
-                        
+                        String zoomFacemap = result.FaceMetrics.ZoomFacemap;
                     }
                 }
 			}
 		}
 
-		protected void showAlert(string message)
+		protected void ShowZoomAlert(string message)
 		{
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.SetMessage(message);
@@ -151,7 +113,7 @@ namespace Sample.Droid
 					{
 						String statusStr = ZoomSDK.GetStatus(activity).ToString();
 						String alertMessage = "Initialization failed. " + statusStr;
-						activity.showAlert(alertMessage);
+                        activity.ShowZoomAlert(alertMessage);
 					}
 				});
 			}

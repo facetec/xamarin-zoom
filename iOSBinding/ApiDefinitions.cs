@@ -3,83 +3,19 @@ using CoreAnimation;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
-using ZoomAuthentication;
+using ZoomAuthenticationHybrid;
 
-namespace ZoomAuthentication
+namespace ZoomAuthenticationHybrid
 {
-	// @interface Zoom : NSObject
-	[BaseType (typeof(NSObject))]
-	interface Zoom
-	{
-		// @property (readonly, nonatomic, strong, class) id<ZoomSDKProtocol> _Nonnull sdk;
-		[Static]
-		[Export ("sdk", ArgumentSemantic.Strong)]
-		IZoomSDKProtocol Sdk { get; }
-	}
-
-	// @protocol ZoomAuthenticationDelegate
+    // @interface Zoom : NSObject
     [BaseType(typeof(NSObject))]
-	[Protocol, Model]
-	interface ZoomAuthenticationDelegate
-	{
-		// @required -(void)onZoomAuthenticationResultWithResult:(ZoomAuthenticationResult * _Nonnull)result;
-		[Abstract]
-		[Export ("onZoomAuthenticationResultWithResult:")]
-		void OnZoomAuthenticationResult (ZoomAuthenticationResult result);
-	}
-
-    interface IZoomAuthenticationDelegate { }
-
-	// @interface ZoomAuthenticationResult : NSObject
-	[BaseType (typeof(NSObject))]
-	[DisableDefaultCtor]
-	interface ZoomAuthenticationResult
-	{
-		// @property (readonly, nonatomic) enum ZoomAuthenticationStatus status;
-		[Export ("status")]
-		ZoomAuthenticationStatus Status { get; }
-
-		// @property (readonly, copy, nonatomic) NSString * _Nullable secret;
-		[NullAllowed, Export ("secret")]
-		string Secret { get; }
-
-		// @property (readonly, nonatomic) enum ZoomAuthenticatorState faceAuthenticatorState;
-		[Export ("faceAuthenticatorState")]
-		ZoomAuthenticatorState FaceAuthenticatorState { get; }
-
-		// @property (readonly, nonatomic, strong) ZoomFaceBiometricMetrics * _Nullable faceMetrics;
-		[NullAllowed, Export ("faceMetrics", ArgumentSemantic.Strong)]
-		ZoomFaceBiometricMetrics FaceMetrics { get; }
-
-		// @property (readonly, nonatomic) NSInteger countOfFaceFailuresSinceLastSuccess;
-		[Export ("countOfFaceFailuresSinceLastSuccess")]
-		nint CountOfFaceFailuresSinceLastSuccess { get; }
-
-		// @property (readonly, nonatomic) NSInteger consecutiveAuthenticationFailures;
-		[Export ("consecutiveAuthenticationFailures")]
-		nint ConsecutiveAuthenticationFailures { get; }
-
-		// @property (readonly, nonatomic) NSInteger consecutiveLockouts;
-		[Export ("consecutiveLockouts")]
-		nint ConsecutiveLockouts { get; }
-
-		// @property (readonly, nonatomic, strong) NSDate * _Nonnull lockoutEndTime;
-		[Export ("lockoutEndTime", ArgumentSemantic.Strong)]
-		NSDate LockoutEndTime { get; }
-
-		// @property (readonly, nonatomic) NSInteger countOfZoomSessionsPerformed;
-		[Export ("countOfZoomSessionsPerformed")]
-		nint CountOfZoomSessionsPerformed { get; }
-
-		// @property (readonly, copy, nonatomic) NSString * _Nonnull description;
-		[Export ("description")]
-		string Description { get; }
-
-		// +(instancetype _Nonnull)new __attribute__((deprecated("-init is unavailable")));
-		[Static]
-		[Export ("new")]
-		ZoomAuthenticationResult New ();
-	}
+    interface Zoom
+    {
+        // @property (readonly, nonatomic, strong, class) id<ZoomSDKProtocol> _Nonnull sdk;
+        [Static]
+        [Export("sdk", ArgumentSemantic.Strong)]
+        IZoomSDKProtocol Sdk { get; }
+    }
 
 	// @interface ZoomCustomization : NSObject
 	[BaseType (typeof(NSObject))]
@@ -194,50 +130,6 @@ namespace ZoomAuthentication
 		ZoomInstructions ZoomInstructionsImages { get; set; }
 	}
 
-	// @protocol ZoomEnrollmentDelegate
-    [BaseType(typeof(NSObject))]
-	[Protocol, Model]
-	interface ZoomEnrollmentDelegate
-	{
-		// @required -(void)onZoomEnrollmentResultWithResult:(ZoomEnrollmentResult * _Nonnull)result;
-		[Abstract]
-		[Export ("onZoomEnrollmentResultWithResult:")]
-		void OnZoomEnrollmentResult (ZoomEnrollmentResult result);
-	}
-
-    interface IZoomEnrollmentDelegate {}
-
-	// @interface ZoomEnrollmentResult : NSObject
-	[BaseType (typeof(NSObject))]
-	[DisableDefaultCtor]
-	interface ZoomEnrollmentResult
-	{
-		// @property (readonly, nonatomic) enum ZoomEnrollmentStatus status;
-		[Export ("status")]
-		ZoomEnrollmentStatus Status { get; }
-
-		// @property (readonly, nonatomic) enum ZoomAuthenticatorState faceEnrollmentState;
-		[Export ("faceEnrollmentState")]
-		ZoomAuthenticatorState FaceEnrollmentState { get; }
-
-		// @property (readonly, nonatomic, strong) ZoomFaceBiometricMetrics * _Nullable faceMetrics;
-		[NullAllowed, Export ("faceMetrics", ArgumentSemantic.Strong)]
-		ZoomFaceBiometricMetrics FaceMetrics { get; }
-
-		// @property (readonly, nonatomic) NSInteger countOfZoomSessionsPerformed;
-		[Export ("countOfZoomSessionsPerformed")]
-		nint CountOfZoomSessionsPerformed { get; }
-
-		// @property (readonly, copy, nonatomic) NSString * _Nonnull description;
-		[Export ("description")]
-		string Description { get; }
-
-		// +(instancetype _Nonnull)new __attribute__((deprecated("-init is unavailable")));
-		[Static]
-		[Export ("new")]
-		ZoomEnrollmentResult New ();
-	}
-
 	// @interface ZoomFaceBiometricMetrics : NSObject
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
@@ -314,30 +206,10 @@ namespace ZoomAuthentication
 		[Export ("preload")]
 		void Preload ();
 
-		// @required -(BOOL)isUserEnrolledWithUserID:(NSString * _Nonnull)userID __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("isUserEnrolledWithUserID:")]
-		bool IsUserEnrolled (string userID);
-
-		// @required -(enum ZoomUserEnrollmentStatus)getUserEnrollmentStatusWithUserID:(NSString * _Nonnull)userID __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("getUserEnrollmentStatusWithUserID:")]
-		ZoomUserEnrollmentStatus GetUserEnrollmentStatus (string userID);
-
 		// @required @property (readonly, nonatomic) enum ZoomCameraPermissionStatus cameraPermissionStatus;
 		[Abstract]
 		[Export ("cameraPermissionStatus")]
 		ZoomCameraPermissionStatus CameraPermissionStatus { get; }
-
-		// @required -(BOOL)deleteUserWithUserID:(NSString * _Nonnull)userID error:(NSError * _Nullable * _Nullable)error;
-		[Abstract]
-		[Export ("deleteUserWithUserID:error:")]
-		bool DeleteUser (string userID, [NullAllowed] out NSError error);
-
-		// @required -(BOOL)deleteAllEnrollmentsAndReturnError:(NSError * _Nullable * _Nullable)error;
-		[Abstract]
-		[Export ("deleteAllEnrollmentsAndReturnError:")]
-		bool DeleteAllEnrollmentsAndReturnError ([NullAllowed] out NSError error);
 
 		// @required -(void)setLanguage:(NSString * _Nonnull)language;
 		[Abstract]
@@ -359,21 +231,6 @@ namespace ZoomAuthentication
 		[Export ("activeTimeoutInSeconds")]
 		nint ActiveTimeoutInSeconds { get; set; }
 
-		// @required @property (nonatomic) enum ZoomHybridBiometricStorageMode zoomHybridBiometricStorageMode;
-		[Abstract]
-		[Export ("zoomHybridBiometricStorageMode", ArgumentSemantic.Assign)]
-		ZoomHybridBiometricStorageMode ZoomHybridBiometricStorageMode { get; set; }
-
-		// @required @property (nonatomic) NSInteger failuresBeforeAuthLockout;
-		[Abstract]
-		[Export ("failuresBeforeAuthLockout")]
-		nint FailuresBeforeAuthLockout { get; set; }
-
-		// @required @property (nonatomic) NSInteger authLockoutTimeInSeconds;
-		[Abstract]
-		[Export ("authLockoutTimeInSeconds")]
-		nint AuthLockoutTimeInSeconds { get; set; }
-
 		// @required @property (readonly, copy, nonatomic) NSString * _Nonnull version;
 		[Abstract]
 		[Export ("version")]
@@ -384,30 +241,10 @@ namespace ZoomAuthentication
 		[Export ("setHybridEncryptionKeyWithPublicKey:")]
 		void SetHybridEncryptionKey (string publicKey);
 
-		// @required -(UIViewController * _Nonnull)createEnrollmentVCWithDelegate:(id<ZoomEnrollmentDelegate> _Nonnull)delegate userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret secret:(NSString * _Nullable)secret verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric __attribute__((warn_unused_result));
+		// @required -(UIViewController * _Nonnull)createVerificationVCWithDelegate:(id<ZoomVerificationDelegate> _Nonnull)delegate retrieveZoomBiometric:(BOOL)retrieveZoomBiometric __attribute__((warn_unused_result));
 		[Abstract]
-		[Export ("createEnrollmentVCWithDelegate:userID:applicationPerUserEncryptionSecret:secret:verificationImages:retrieveZoomBiometric:")]
-		UIViewController CreateEnrollmentVC (IZoomEnrollmentDelegate @delegate, string userID, string applicationPerUserEncryptionSecret, [NullAllowed] string secret, [NullAllowed] UIImage[] verificationImages, bool retrieveZoomBiometric);
-
-		// @required -(UIViewController * _Nonnull)createEnrollmentVCWithDelegate:(id<ZoomEnrollmentDelegate> _Nonnull)delegate userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret secret:(NSString * _Nullable)secret __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("createEnrollmentVCWithDelegate:userID:applicationPerUserEncryptionSecret:secret:")]
-		UIViewController CreateEnrollmentVC (IZoomEnrollmentDelegate @delegate, string userID, string applicationPerUserEncryptionSecret, [NullAllowed] string secret);
-
-		// @required -(UIViewController * _Nonnull)createAuthenticationVCWithDelegate:(id<ZoomAuthenticationDelegate> _Nonnull)delegate userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("createAuthenticationVCWithDelegate:userID:applicationPerUserEncryptionSecret:verificationImages:retrieveZoomBiometric:")]
-        UIViewController CreateAuthenticationVC (IZoomAuthenticationDelegate @delegate, string userID, string applicationPerUserEncryptionSecret, [NullAllowed] UIImage[] verificationImages, bool retrieveZoomBiometric);
-
-		// @required -(UIViewController * _Nonnull)createAuthenticationVCWithDelegate:(id<ZoomAuthenticationDelegate> _Nonnull)delegate userID:(NSString * _Nonnull)userID applicationPerUserEncryptionSecret:(NSString * _Nonnull)applicationPerUserEncryptionSecret __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("createAuthenticationVCWithDelegate:userID:applicationPerUserEncryptionSecret:")]
-        UIViewController CreateAuthenticationVC (IZoomAuthenticationDelegate @delegate, string userID, string applicationPerUserEncryptionSecret);
-
-		// @required -(UIViewController * _Nonnull)createVerificationVCWithDelegate:(id<ZoomVerificationDelegate> _Nonnull)delegate verificationImages:(NSArray<UIImage *> * _Nullable)verificationImages retrieveZoomBiometric:(BOOL)retrieveZoomBiometric __attribute__((warn_unused_result));
-		[Abstract]
-		[Export ("createVerificationVCWithDelegate:verificationImages:retrieveZoomBiometric:")]
-		UIViewController CreateVerificationVC (IZoomVerificationDelegate @delegate, [NullAllowed] UIImage[] verificationImages, bool retrieveZoomBiometric);
+		[Export ("createVerificationVCWithDelegate:retrieveZoomBiometric:")]
+		UIViewController CreateVerificationVC (IZoomVerificationDelegate @delegate, bool retrieveZoomBiometric);
 	}
 
     interface IZoomSDKProtocol {} // Important: Do not remove
@@ -421,7 +258,11 @@ namespace ZoomAuthentication
 		[Abstract]
 		[Export ("onZoomVerificationResultWithResult:")]
 		void OnZoomVerificationResult (ZoomVerificationResult result);
-	}
+
+        // @optional -(void)onBeforeDismiss;
+        [Export("onBeforeDismiss")]
+        void OnBeforeDismiss();
+    }
 
     interface IZoomVerificationDelegate {}
 
@@ -441,6 +282,10 @@ namespace ZoomAuthentication
 		// @property (readonly, nonatomic) NSInteger countOfZoomSessionsPerformed;
 		[Export ("countOfZoomSessionsPerformed")]
 		nint CountOfZoomSessionsPerformed { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull sessionId;
+		[Export ("sessionId")]
+		string SessionId { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * _Nonnull description;
 		[Export ("description")]

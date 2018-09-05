@@ -1,32 +1,33 @@
 ﻿using System;
 
 using UIKit;
-using ZoomAuthentication;
+using ZoomAuthenticationHybrid;
 using CoreGraphics;
 
 namespace Sample.iOS
 {
-    public partial class ViewController : UIViewController, IZoomEnrollmentDelegate, IZoomAuthenticationDelegate, IZoomVerificationDelegate
+    public partial class ViewController : UIViewController, IZoomVerificationDelegate
 	{
-		String appToken = "YOUR APP TOKEN HERE";
-		String userId = "myUserId";
-		String encryptionSecret = "myUserEncryptionSecret";
+		readonly String appToken = "SET_YOUR_TOKEN_HERE";
+
+        // Set your encryption key to retrieve facemaps
+        readonly String hybridEncryptionKey = @""; 
 
 		public ViewController(IntPtr handle) : base(handle)
 		{
 		}
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-			setStyles();
+            SetStyles();
 
-			EnrollButton.Enabled = false;
-			EnrollButton.TouchUpInside += delegate { startEnrollment(); };
+            EnrollButton.Enabled = false;
+            EnrollButton.TouchUpInside += delegate { StartVerification(); };
 
-			AuthButton.Enabled = false;
-			AuthButton.TouchUpInside += delegate { startAuthentication(); };
+            AuthButton.Enabled = false;
+            AuthButton.TouchUpInside += delegate {  };
 
 			VersionLabel.Text = "Zoom SDK v" + Zoom.Sdk.Version;
 
@@ -35,63 +36,43 @@ namespace Sample.iOS
             Zoom.Sdk.SetCustomization(customization);
 
             // Initialize the SDK before trying to use it
-            Zoom.Sdk.Initialize(appToken, onInitializeResult);
+            Zoom.Sdk.Initialize(appToken, OnInitializeResult);
+
+            // Set your biometric encryption key if provided
+            if (hybridEncryptionKey.Length > 0) {
+                Zoom.Sdk.SetHybridEncryptionKey(hybridEncryptionKey);
+            }
 		}
 
-        // Enroll a new user
-		private void startEnrollment()
-		{
-            var controller = Zoom.Sdk.CreateEnrollmentVC(this, userId, encryptionSecret, null);
-            PresentViewController(controller, false, null);
-		}
-
-        // Authenticate an enrolled user
-		private void startAuthentication()
-		{
-			if (Zoom.Sdk.IsUserEnrolled(userId)) {
-                var controller = Zoom.Sdk.CreateAuthenticationVC(this, userId, encryptionSecret);
-				PresentViewController(controller, false, null);
-			}
-			else
-			{
-				showAlert("", "User doesn't exist.");
-			}
-		}
 
         // Verify a user's liveness
-        private void startVerification() 
+        void StartVerification() 
         {
-            var controller = Zoom.Sdk.CreateVerificationVC(this, null, false);
+            bool retrieveBiometric = hybridEncryptionKey.Length > 0;
+
+            var controller = Zoom.Sdk.CreateVerificationVC(this, retrieveBiometric);
             PresentViewController(controller, false, null);
         }
 
-		public void OnZoomEnrollmentResult(ZoomEnrollmentResult result)
-		{
-            if (result.FaceMetrics != null) {
-                
-            }
-
-            showAlert("Enroll Result", result.Description);
-		}
-
-        public void OnZoomAuthenticationResult(ZoomAuthenticationResult result)
-		{
-			showAlert("Auth Result", result.Description);
-		}
 
         public void OnZoomVerificationResult(ZoomVerificationResult result)
         {
-            showAlert("Verification Result", result.Description);
+            ShowZoomAlert("Verification Result", result.Description);
+
+            if (result.FaceMetrics != null) {
+                String facemap = result.FaceMetrics.ZoomFacemap;
+
+            }
         }
 
-		private void onInitializeResult(bool success)
+        void OnInitializeResult(bool success)
 		{
 			EnrollButton.Enabled = success;
 			AuthButton.Enabled = success;
 
 			if (!success)
 			{
-				showAlert("Initialize Failed", Zoom.Sdk.Status.ToString());
+				ShowZoomAlert("Initialize Failed", Zoom.Sdk.Status.ToString());
 			}
 		}
 
@@ -101,21 +82,21 @@ namespace Sample.iOS
 			// Release any cached data, images, etc that aren't in use.		
 		}
 
-		private void showAlert(String title, String message)
+        void ShowZoomAlert(String title, String message)
 		{
 			var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
 			alertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
 			PresentViewController(alertController, true, null);
 		}
 
-		private void setStyles()
+        void SetStyles()
 		{
 			var gradient = new CoreAnimation.CAGradientLayer();
 			gradient.Frame = UIScreen.MainScreen.Bounds;
 			gradient.Colors = new CGColor[] { new UIColor(red:0.04f, green:0.71f, blue:0.64f, alpha:1).CGColor,
 				                              new UIColor(red:0.07f, green:0.57f, blue:0.76f, alpha:1).CGColor }; 
-			gradient.StartPoint = new CoreGraphics.CGPoint(0, 0);
-			gradient.EndPoint = new CoreGraphics.CGPoint(1, 0);
+			gradient.StartPoint = new CGPoint(0, 0);
+			gradient.EndPoint = new CGPoint(1, 0);
 			BackgroundView.Layer.Frame = UIScreen.MainScreen.Bounds;
 			BackgroundView.Layer.AddSublayer(gradient);
 

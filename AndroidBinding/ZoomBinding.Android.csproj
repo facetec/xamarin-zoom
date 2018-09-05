@@ -9,18 +9,18 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Zoom</RootNamespace>
     <AssemblyName>ZoomBinding.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Xamarin.Zoom.AndroidLibrary</PackageId>
-    <PackageVersion>6.5.0</PackageVersion>
+    <PackageVersion>6.7.0</PackageVersion>
     <Authors>FaceTec, Inc</Authors>
     <Description>A Xamarin library to provide access to FaceTec's ZoOm Android SDK - 3D Face Login + TrueLiveness</Description>
     <Owners>FaceTec, Inc</Owners>
     <PackageProjectUrl>https://github.com/facetec/xamarin-zoom</PackageProjectUrl>
-    <ReleaseVersion>6.5.0</ReleaseVersion>
+    <ReleaseVersion>6.7.0</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <NoWarn>CS0109</NoWarn>
   </PropertyGroup>
@@ -103,7 +103,7 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\zoom-authentication.aar" />
+    <LibraryProjectZip Include="Jars\zoom-authentication-hybrid.aar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />

@@ -14,8 +14,9 @@ namespace ZoomAuthenticationHybrid
 	[Native]
 	public enum CancelButtonLocation : ulong
 	{
-		Left = 0,
-		Right = 1
+		TopLeft = 0,
+		TopRight = 1,
+		Disabled = 2
 	}
 
 	[Native]

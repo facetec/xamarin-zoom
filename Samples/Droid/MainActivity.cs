@@ -78,7 +78,7 @@ namespace Sample.Droid
 
                     if (result.FaceMetrics != null)
                     {
-                        String zoomFacemap = result.FaceMetrics.ZoomFacemap;
+                        byte[] zoomFacemap = result.FaceMetrics.GetZoomFacemap();
                     }
                 }
 			}

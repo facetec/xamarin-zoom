@@ -151,9 +151,9 @@ namespace ZoomAuthenticationHybrid
 		[Export ("externalImageSetVerificationResult")]
 		ZoomExternalImageSetVerificationResult ExternalImageSetVerificationResult { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable zoomFacemap;
-		[NullAllowed, Export ("zoomFacemap")]
-		string ZoomFacemap { get; }
+		// @property (readonly, copy, nonatomic) NSData * _Nullable zoomFacemap;
+		[NullAllowed, Export ("zoomFacemap", ArgumentSemantic.Copy)]
+		NSData ZoomFacemap { get; }
 
 		// +(instancetype _Nonnull)new __attribute__((deprecated("-init is unavailable")));
 		[Static]

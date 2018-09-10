@@ -1,8 +1,10 @@
 ﻿using System;
 
-using UIKit;
-using ZoomAuthenticationHybrid;
 using CoreGraphics;
+using Foundation;
+using UIKit;
+
+using ZoomAuthenticationHybrid;
 
 namespace Sample.iOS
 {
@@ -60,7 +62,7 @@ namespace Sample.iOS
             ShowZoomAlert("Verification Result", result.Description);
 
             if (result.FaceMetrics != null) {
-                String facemap = result.FaceMetrics.ZoomFacemap;
+                NSData facemap = result.FaceMetrics.ZoomFacemap;
 
             }
         }

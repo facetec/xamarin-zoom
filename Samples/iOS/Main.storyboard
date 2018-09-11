@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,87 +17,149 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="63" translatesAutoresizingMaskIntoConstraints="NO" userInteractionEnabled="NO" fixedFrame="YES">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63">
                                 <rect key="frame" x="0.0" y="583" width="600" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <subviews/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx" clipsSubviews="YES" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="60">
-                                <rect key="frame" x="163" y="187" width="271" height="60"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx">
+                                <rect key="frame" x="51" y="166" width="273" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" title="ENROLL">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
-                                </state>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="1"/>
-                                <connections/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
-                                        <real key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <accessibility key="accessibilityConfiguration" identifier="enrollButton"/>
-                                <constraints>
-                                    <constraint id="184" firstAttribute="width" constant="271"/>
-                                    <constraint id="187" firstItem="oBE-Ac-vcx" firstAttribute="height" constant="60"/>
-                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Enroll">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <state key="disabled">
-                                    <color key="titleColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                    <color key="titleColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72" clipsSubviews="YES" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="60" misplaced="YES">
-                                <rect key="frame" x="163" y="292" width="271" height="60"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" title="AUTHENTICATE">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
-                                </state>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="1"/>
-                                <connections>
-                                    <action selector="EnrollButton_TouchUpInside:" destination="74" id="73" eventType="touchUpInside"/>
-                                </connections>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <accessibility key="accessibilityConfiguration" identifier="authButton"/>
-                                <state key="disabled">
-                                    <color key="titleColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
-                                </state>
+                                <constraints>
+                                    <constraint id="4683" firstAttribute="height" constant="60"/>
+                                </constraints>
+                                <connections/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="221" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                                <rect key="frame" x="278" y="375" width="42" height="21"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72">
+                                <rect key="frame" x="52.5" y="236" width="270" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="authButton"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Authenticate">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections/>
+                                <constraints>
+                                    <constraint id="5178" firstAttribute="height" constant="60"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="886">
+                                <rect key="frame" x="52" y="306" width="271" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="checkEnrollmentButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="888"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Check Enrollment">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="221">
+                                <rect key="frame" x="171" y="446" width="33" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="4671" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Enter Username">
+                                <rect key="frame" x="51" y="120" width="273" height="36"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <constraints>
+                                    <constraint id="4682" firstAttribute="height" constant="36"/>
+                                </constraints>
+                            </textField>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6868">
+                                <rect key="frame" x="52.5" y="376" width="270" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="deleteEnrollmentButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6870"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Delete Enrollment">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint id="203" firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="167"/>
-                            <constraint id="204" firstItem="8bC-Xf-vdC" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX" constant="1"/>
-                            <constraint id="209" firstItem="72" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX"/>
-                            <constraint id="210" firstItem="72" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="bottom" constant="40"/>
-                            <constraint id="213" firstItem="72" firstAttribute="width" secondItem="oBE-Ac-vcx" secondAttribute="width"/>
-                            <constraint id="214" firstItem="72" firstAttribute="height" secondItem="oBE-Ac-vcx" secondAttribute="height"/>
-                            <constraint id="222" firstItem="221" firstAttribute="top" secondItem="72" secondAttribute="bottom" constant="23"/>
-                            <constraint id="223" firstItem="8bC-Xf-vdC" firstAttribute="centerX" secondItem="221" secondAttribute="centerX" constant="1"/>
+                            <constraint id="969" firstItem="886" firstAttribute="top" secondItem="72" secondAttribute="centerY" constant="40"/>
+                            <constraint id="971" firstItem="886" firstAttribute="centerX" secondItem="72" secondAttribute="centerX"/>
+                            <constraint id="976" firstAttribute="centerX" secondItem="221" secondAttribute="centerX"/>
+                            <constraint id="4672" firstItem="4671" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100"/>
+                            <constraint id="4673" firstAttribute="trailingMargin" secondItem="4671" secondAttribute="trailing" constant="35"/>
+                            <constraint id="4674" firstItem="4671" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="35"/>
+                            <constraint id="4933" firstItem="oBE-Ac-vcx" firstAttribute="top" secondItem="4671" secondAttribute="bottom" constant="10"/>
+                            <constraint id="4934" firstItem="oBE-Ac-vcx" firstAttribute="width" secondItem="4671" secondAttribute="width"/>
+                            <constraint id="4935" firstItem="4671" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX"/>
+                            <constraint id="4936" firstItem="72" firstAttribute="top" secondItem="oBE-Ac-vcx" secondAttribute="bottom" constant="10"/>
+                            <constraint id="4937" firstItem="72" firstAttribute="centerX" secondItem="oBE-Ac-vcx" secondAttribute="centerX"/>
+                            <constraint id="5179" firstItem="72" firstAttribute="width" secondItem="oBE-Ac-vcx" secondAttribute="width" constant="-3"/>
+                            <constraint id="6871" firstItem="886" firstAttribute="width" secondItem="72" secondAttribute="width"/>
+                            <constraint id="6873" firstItem="6868" firstAttribute="top" secondItem="886" secondAttribute="bottom" constant="10"/>
+                            <constraint id="6874" firstItem="6868" firstAttribute="width" secondItem="886" secondAttribute="width"/>
+                            <constraint id="6875" firstItem="6868" firstAttribute="centerX" secondItem="886" secondAttribute="centerX"/>
+                            <constraint id="7130" firstItem="221" firstAttribute="centerX" secondItem="6868" secondAttribute="centerX"/>
+                            <constraint id="7134" firstItem="221" firstAttribute="top" secondItem="6868" secondAttribute="bottom" constant="10"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="AuthButton" destination="72" id="name-outlet-72"/>
                         <outlet property="BackgroundView" destination="63" id="name-outlet-63"/>
                         <outlet property="EnrollButton" destination="oBE-Ac-vcx" id="name-outlet-oBE-Ac-vcx"/>
-                        <outlet property="AuthButton" destination="72" id="name-outlet-72"/>
                         <outlet property="VersionLabel" destination="221" id="name-outlet-221"/>
+                        <outlet property="CheckEnrollmentButton" destination="886" id="name-outlet-886"/>
+                        <outlet property="IdentityTextField" destination="4671" id="name-outlet-4671"/>
+                        <outlet property="DeleteEnrollmentButton" destination="6868" id="name-outlet-6868"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-285" y="165"/>
         </scene>
     </scenes>
 </document>

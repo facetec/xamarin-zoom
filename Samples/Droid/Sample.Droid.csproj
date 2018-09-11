@@ -47,6 +47,13 @@
     <Reference Include="Mono.Android" />
     <Reference Include="Java.Interop" />
     <PackageReference Include="Xamarin.Zoom.AndroidLibrary" Version="6.8.0" />
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.3</Version>
+    </PackageReference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

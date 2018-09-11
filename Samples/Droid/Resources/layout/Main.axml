@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:gravity="center">
+    <EditText
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/identityText"
+        android:layout_marginBottom="10dp"
+        android:hint="Enter Username"
+        android:singleLine="true"/>
     <Button
         android:id="@+id/enrollButton"
         android:background="@drawable/button_background"
@@ -12,9 +20,9 @@
         android:textColor="@drawable/button_text_state"
         android:layout_width="230dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="40dp"
-        android:text="ENROLL"
-        android:textSize="20sp" />
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:text="Enroll" />
     <Button
         android:id="@+id/authButton"
         android:enabled="false"
@@ -22,9 +30,29 @@
         android:textColor="@drawable/button_text_state"
         android:layout_width="230dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="40dp"
-        android:text="AUTHENTICATE"
-        android:textSize="20sp" />
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:text="Authenticate" />
+    <Button
+        android:id="@+id/checkEnrollmentButton"
+        android:enabled="false"
+        android:background="@drawable/button_background"
+        android:textColor="@drawable/button_text_state"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:text="Check Enrollment" />
+    <Button
+        android:id="@+id/deleteEnrollmentButton"
+        android:enabled="false"
+        android:background="@drawable/button_background"
+        android:textColor="@drawable/button_text_state"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:text="Delete Enrollment" />
     <TextView
         android:id="@+id/versionText"
         android:layout_height="wrap_content"

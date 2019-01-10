@@ -1,3 +1,15 @@
+**Limited Support Notice**
+--------------------------
+This plugin, bindings, and sample code are meant for example purposes.  This example is not guaranteed to run out of the box as it may be utilizing an older version of ZoOm than we officially support for development purposes.
+
+For experienced Xamarin developers, this plugin and the sample provided should be enough to port ZoOm into your own application.  There may be some work required to update the bindings to the versy latest released Native iOS and Android ZoOm libraries (7.0.0)+, which can be downloaded here - https://dev.zoomlogin.com/zoomsdk/#/downloads.
+
+Hopefully this is enough to get you going!
+
+If you have any more technical questions or need assistance upgrading this library to the latest version of ZoOm, please feel free to contact us at support@zoomlogin.com
+------------------------------
+**End Limited Support Notice**
+
 ZoOm SDK for Xamarin
 ------------
 To get started with ZoOm, you must be registered.  If you don't have an app token, register for [developer access](https://dev.zoomlogin.com/).

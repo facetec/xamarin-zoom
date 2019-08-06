@@ -1,6 +1,6 @@
 **Limited Support Notice**
 --------------------------
-This plugin, bindings, and sample code are meant for example purposes.  This example is not guaranteed to run out of the box as it may be utilizing an older version of ZoOm than we officially support for development purposes.
+This plugin, bindings, and sample code are meant for example purposes.  This example is based on an earlier version of ZoOm (6.5.0) from mid-2018 that is no longer support and the APIs have changed (please see https://dev.zoomlogin.com/zoomsdk/#/ for latest version information).
 
 For experienced Xamarin developers, this plugin and the sample provided should be enough to port ZoOm into your own application.  There may be some work required to update the bindings to the versy latest released Native iOS and Android ZoOm libraries (7.0.0)+, which can be downloaded here - https://dev.zoomlogin.com/zoomsdk/#/downloads.
 
